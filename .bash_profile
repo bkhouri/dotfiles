@@ -121,7 +121,7 @@ function __setup_prompt() {
     # PS1_DEFAULT="${Blu}\[$(tput setaf 6)\]\t "
     # add timestamp
     PS1="${Cya}\t ${RCol}"
-
+    PS1+="[\!] "
     # Add previous terminal command error code to prompt if necessary
     PS1+="\`retCode=\$?; if [ \${retCode} -ne 0 ]; then echo \"${BIRed}ErrorCode:\${retCode}${RCol} \";fi\`"
 
@@ -136,7 +136,7 @@ function __setup_prompt() {
 
     # indicate if we are running as user root
     PS1+="\`if [ \"\${UID}\" = \"0\" ]; then echo \"${Yel}user:root${RCol} \"; fi\`"
-    PS1+="[\!] "
+    #PS1+="[\!] "
     # Display a terminating prompt
     PS1+="${Yel}\$ ${RCol}"
 
