@@ -210,3 +210,10 @@ function git_create_branch() {
     fi
 }
 
+function exit() {
+    read -t5 -n1 -p "Do you really wish to exit? [Yn] " should_exit || should_exit=y
+    case $should_exit in
+        [Yy] ) builtin exit $1 ;;
+        * ) printf "\n" ;;
+    esac
+}
