@@ -173,3 +173,6 @@ alias pumpitup="osascript -e 'set volume output volume 100'"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# The classic snake game on a terminal
+alias snake='docker run -ti dyego/snake-game'

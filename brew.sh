@@ -36,6 +36,15 @@ brew install bash-completion2
 #  chsh -s /usr/local/bin/bash;
 #fi;
 
+# Install fun tools
+brew install fortune # https://opensource.com/article/18/12/linux-toy-fortune
+brew install cowsay  # https://opensource.com/article/18/12/linux-toy-cowsay
+brew install boxes   #
+brew install sl      #
+brew install lolcat  # https://opensource.com/article/18/12/linux-toy-lolcat
+brew install gawk    #
+brew install nyancat # https://opensource.com/article/18/12/linux-toy-nyancat
+
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
@@ -86,8 +95,9 @@ brew install bat
 brew install prettyping
 #brew install ack
 ##brew install exiv2
-#brew install git
-#brew install git-lfs
+brew install git
+brew install git-lfs
+brew install bash-git-prompt
 #brew install imagemagick --with-webp
 #brew install lua
 #brew install lynx
@@ -97,7 +107,7 @@ brew install prettyping
 #brew install rename
 #brew install rlwrap
 #brew install ssh-copy-id
-#brew install tree
+brew install tree
 #brew install vbindiff
 #brew install zopfli
 
