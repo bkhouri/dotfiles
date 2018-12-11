@@ -44,6 +44,7 @@ brew install sl      #
 brew install lolcat  # https://opensource.com/article/18/12/linux-toy-lolcat
 brew install gawk    #
 brew install nyancat # https://opensource.com/article/18/12/linux-toy-nyancat
+brew install nsnake
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
