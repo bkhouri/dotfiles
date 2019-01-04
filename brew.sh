@@ -45,6 +45,14 @@ brew install lolcat  # https://opensource.com/article/18/12/linux-toy-lolcat
 brew install gawk    #
 brew install nyancat # https://opensource.com/article/18/12/linux-toy-nyancat
 brew install nsnake
+brew install cmatrix # https://opensource.com/article/18/12/linux-toy-cmatrix
+
+
+# other useful tools, all from https://dev.to/_darrenburns/10-tools-to-power-up-your-command-line-4id4
+brew install z
+brew install fzf
+brew install exa
+brew install ripgrep
 
 # Install `wget` with IRI support.
 brew install wget --with-iri

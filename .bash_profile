@@ -209,6 +209,10 @@ if [ -f "${GIT_COMPLETION_FILE}" ] ; then
     source ${GIT_COMPLETION_FILE}
 fi
 
+if [ -f $(brew --prefix)/etc/profile.d/z.sh ] ; then
+    source $(brew --prefix)/etc/profile.d/z.sh
+fi
+
 function getAbsolutePath() {
     if [ -n "$1" ] ; then
         LOCAL_VARIABLE="${1}" && echo $(cd $(dirname "$LOCAL_VARIABLE") && pwd -P)/$(basename "$LOCAL_VARIABLE")
