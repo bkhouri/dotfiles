@@ -266,7 +266,7 @@ function git_create_branch() {
 function exit() {
     read -t5 -n1 -p "Do you really wish to exit? [Yn] " should_exit || should_exit=y
     case $should_exit in
-        [Yy] ) builtin exit $1 ;;
+        [Yy] ) builtin exit $@ ;;
         * ) printf "\n" ;;
     esac
 }
@@ -280,3 +280,16 @@ function wttr()
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
 
+
+BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
+#BASH_SEAFLY_PROMPT_ENABLE=true
+if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
+    # https://github.com/bluz71/bash-seafly-prompt
+    SEAFLY_PROMPT_SYMBOL="\n${SEAFLY_PROMPT_SYMBOL}"
+    SEAFLY_GIT_PREFIX="("
+    SEAFLY_GIT_SUFFIX=")"
+    #SEAFLY_HOST_COLOR='\[\e[0;32m\]'
+    #SEAFLY_PATH_COLOR='\[\e[0;33m\]'
+    #SEAFLY_GIT_COLOR='\[\e[0;32m\]'
+    source ${BASH_SEAFLY_PROMPT_DIR}
+fi
