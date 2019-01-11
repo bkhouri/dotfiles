@@ -285,11 +285,13 @@ BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
 #BASH_SEAFLY_PROMPT_ENABLE=true
 if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
     # https://github.com/bluz71/bash-seafly-prompt
-    SEAFLY_PROMPT_SYMBOL="\n${SEAFLY_PROMPT_SYMBOL}"
+    SEAFLY_PROMPT_SYMBOL="\n❯"
     SEAFLY_GIT_PREFIX="("
     SEAFLY_GIT_SUFFIX=")"
-    #SEAFLY_HOST_COLOR='\[\e[0;32m\]'
-    #SEAFLY_PATH_COLOR='\[\e[0;33m\]'
-    #SEAFLY_GIT_COLOR='\[\e[0;32m\]'
+    SEAFLY_HOST_COLOR='\[\e[0;32m\]'
+    SEAFLY_PATH_COLOR='\[\e[0;33m\]'
+    SEAFLY_GIT_COLOR='\[\e[0;32m\]'
+    SEAFLY_SHOW_USER=1
+    SEAFLY_LAYOUT=2
     source ${BASH_SEAFLY_PROMPT_DIR}
 fi

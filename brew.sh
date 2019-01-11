@@ -47,6 +47,8 @@ brew install nyancat # https://opensource.com/article/18/12/linux-toy-nyancat
 brew install nsnake
 brew install cmatrix # https://opensource.com/article/18/12/linux-toy-cmatrix
 
+# record terminal
+brew install asciinema  # https://asciinema.org
 
 # other useful tools, all from https://dev.to/_darrenburns/10-tools-to-power-up-your-command-line-4id4
 brew install z
