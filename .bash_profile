@@ -193,6 +193,35 @@ function __setup_prompt() {
 }
 __setup_prompt
 
+BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
+#BASH_SEAFLY_PROMPT_ENABLE=true
+if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
+    # https://github.com/bluz71/bash-seafly-prompt
+    SEAFLY_PROMPT_PREFIX='if [ -n "${VIRTUAL_ENV}" ]; then echo "($(basename ${VIRTUAL_ENV}))"; fi'
+    SEAFLY_PROMPT_SYMBOL="\n❯"
+    SEAFLY_GIT_PREFIX="("
+    SEAFLY_GIT_SUFFIX=")"
+    SEAFLY_HOST_COLOR='\[\e[0;32m\]'
+    SEAFLY_PATH_COLOR='\[\e[0;33m\]'
+    SEAFLY_GIT_COLOR='\[\e[0;32m\]'
+    SEAFLY_SHOW_USER=1
+    SEAFLY_LAYOUT=2
+    source ${BASH_SEAFLY_PROMPT_DIR}
+fi
+
+function updateBashPromptCode {
+    local oldCommitId
+    local newCommitId
+    cd ${BASH_SEAFLY_PROMPT_DIR}
+    oldCommitId=$(git rev-parse HEAD )
+    git pull --quiet
+    newCommitId=$(git rev-parse HEAD)
+    cd - 1>&2
+    echo "Old commit ID: ${oldCommitId}"
+    echo "New Commit ID: ${newCommitId}"
+}
+
+
 function source_alias() {
     if [ -f ${BASH_ALIAS_FILE} ] ; then
         source ${BASH_ALIAS_FILE}
@@ -264,9 +293,10 @@ function git_create_branch() {
 }
 
 function exit() {
-    read -t5 -n1 -p "Do you really wish to exit? [Yn] " should_exit || should_exit=y
+    read -t5 -n1 -p "Do you really wish to exit? [Y/n] " should_exit || should_exit=y
     case $should_exit in
         [Yy] ) builtin exit $@ ;;
+        "" ) builtin exit $@ ;;
         * ) printf "\n" ;;
     esac
 }
@@ -278,33 +308,4 @@ function wttr()
     local request="wttr.in/${1-Ottawa}"
     [ "$COLUMNS" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
-}
-
-
-BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
-#BASH_SEAFLY_PROMPT_ENABLE=true
-if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
-    # https://github.com/bluz71/bash-seafly-prompt
-    SEAFLY_PROMPT_PREFIX='if [ -n "${VIRTUAL_ENV}" ]; then echo "($(basename ${VIRTUAL_ENV}))"; fi'
-    SEAFLY_PROMPT_SYMBOL="\n❯"
-    SEAFLY_GIT_PREFIX="("
-    SEAFLY_GIT_SUFFIX=")"
-    SEAFLY_HOST_COLOR='\[\e[0;32m\]'
-    SEAFLY_PATH_COLOR='\[\e[0;33m\]'
-    SEAFLY_GIT_COLOR='\[\e[0;32m\]'
-    SEAFLY_SHOW_USER=1
-    SEAFLY_LAYOUT=2
-    source ${BASH_SEAFLY_PROMPT_DIR}
-fi
-
-function updateBashPromptCode {
-    local oldCommitId
-    local newCommitId
-    cd ${BASH_SEAFLY_PROMPT_DIR}
-    oldCommitId=$(git rev-parse HEAD )
-    git pull --quiet
-    newCommitId=$(git rev-parse HEAD)
-    cd - 1>&2
-    echo "Old commit ID: ${oldCommitId}"
-    echo "New Commit ID: ${newCommitId}"
 }
