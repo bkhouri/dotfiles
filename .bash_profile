@@ -285,6 +285,7 @@ BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
 #BASH_SEAFLY_PROMPT_ENABLE=true
 if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
     # https://github.com/bluz71/bash-seafly-prompt
+    SEAFLY_PROMPT_PREFIX='if [ -n "${VIRTUAL_ENV}" ]; then echo "($(basename ${VIRTUAL_ENV}))"; fi'
     SEAFLY_PROMPT_SYMBOL="\n❯"
     SEAFLY_GIT_PREFIX="("
     SEAFLY_GIT_SUFFIX=")"
@@ -295,3 +296,15 @@ if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
     SEAFLY_LAYOUT=2
     source ${BASH_SEAFLY_PROMPT_DIR}
 fi
+
+function updateBashPromptCode {
+    local oldCommitId
+    local newCommitId
+    cd ${BASH_SEAFLY_PROMPT_DIR}
+    oldCommitId=$(git rev-parse HEAD )
+    git pull --quiet
+    newCommitId=$(git rev-parse HEAD)
+    cd - 1>&2
+    echo "Old commit ID: ${oldCommitId}"
+    echo "New Commit ID: ${newCommitId}"
+}
