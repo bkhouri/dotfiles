@@ -195,7 +195,7 @@ __setup_prompt
 
 BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
 #BASH_SEAFLY_PROMPT_ENABLE=true
-if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}"]; then
+if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}" ]; then
     # https://github.com/bluz71/bash-seafly-prompt
     SEAFLY_PROMPT_PREFIX='if [ -n "${VIRTUAL_ENV}" ]; then echo "($(basename ${VIRTUAL_ENV}))"; fi'
     SEAFLY_PROMPT_SYMBOL="\n❯"
