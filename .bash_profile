@@ -202,12 +202,17 @@ if [ -n "${BASH_SEAFLY_PROMPT_ENABLE}"  -a -f "${BASH_SEAFLY_PROMPT_FILE}" ]; th
     SEAFLY_PROMPT_SYMBOL="\n$"
     SEAFLY_GIT_PREFIX="("
     SEAFLY_GIT_SUFFIX=")"
-    SEAFLY_HOST_COLOR='\[\e[0;32m\]'
-    SEAFLY_PATH_COLOR='\[\e[0;33m\]'
-    SEAFLY_GIT_COLOR='\[\e[0;32m\]'
+    #SEAFLY_HOST_COLOR='\[\e[0;32m\]'
+    #SEAFLY_PATH_COLOR='\[\e[0;33m\]'
+    #SEAFLY_GIT_COLOR='\[\e[0;32m\]'
     SEAFLY_SHOW_USER=1
     SEAFLY_LAYOUT=2
     SEAFLY_PS2_PROMPT_SYMBOL='>'
+    SEAFLY_NORMAL_COLOR="$(tput setaf 63)"
+    SEAFLY_ALERT_COLOR="$(tput setaf 202)"
+    SEAFLY_HOST_COLOR="$(tput setaf 242)"
+    SEAFLY_GIT_COLOR="$(tput setaf 99)"
+    SEAFLY_PATH_COLOR="$(tput setaf 70)"
     source ${BASH_SEAFLY_PROMPT_FILE}
 fi
 
