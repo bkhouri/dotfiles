@@ -1,44 +1,43 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$HOME/Documents/bin:$PATH";
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+#for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+#    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+#done;
+#unset file;
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+## Case-insensitive globbing (used in pathname expansion)
+#shopt -s nocaseglob;
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+## Append to the Bash history file, rather than overwriting it
+#shopt -s histappend;
 
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+## Autocorrect typos in path names when using `cd`
+#shopt -s cdspell;
 
-# Enable some Bash 4 features when possible:
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
-    shopt -s "$option" 2> /dev/null;
-done;
+## Enable some Bash 4 features when possible:
+## * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+## * Recursive globbing, e.g. `echo **/*.txt`
+#for option in autocd globstar; do
+#    shopt -s "$option" 2> /dev/null;
+#done;
 
-# Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-    source "$(brew --prefix)/share/bash-completion/bash_completion";
-elif [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion;
-fi;
+## Add tab completion for many Bash commands
+#if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+#    source "$(brew --prefix)/share/bash-completion/bash_completion";
+#elif [ -f /etc/bash_completion ]; then
+#    source /etc/bash_completion;
+#fi;
 
-# Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-    complete -o default -o nospace -F _git g;
-fi;
+## Enable tab completion for `g` by marking it as an alias for `git`
+#if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+#    complete -o default -o nospace -F _git g;
+#fi;
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+## Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+#[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
@@ -194,11 +193,13 @@ function __setup_prompt() {
 __setup_prompt
 
 BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
-#BASH_SEAFLY_PROMPT_ENABLE=true
-if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}" ]; then
+BASH_SEAFLY_PROMPT_FILE=${BASH_SEAFLY_PROMPT_DIR}/command_prompt.bash
+BASH_SEAFLY_PROMPT_ENABLE=true
+if [ -n "${BASH_SEAFLY_PROMPT_ENABLE}"  -a -f "${BASH_SEAFLY_PROMPT_FILE}" ]; then
     # https://github.com/bluz71/bash-seafly-prompt
     SEAFLY_PROMPT_PREFIX='if [ -n "${VIRTUAL_ENV}" ]; then echo "($(basename ${VIRTUAL_ENV}))"; fi'
     SEAFLY_PROMPT_SYMBOL="\n❯"
+    SEAFLY_PROMPT_SYMBOL="\n$"
     SEAFLY_GIT_PREFIX="("
     SEAFLY_GIT_SUFFIX=")"
     SEAFLY_HOST_COLOR='\[\e[0;32m\]'
@@ -206,8 +207,20 @@ if [ -d "${BASH_SEAFLY_PROMPT_DIR}" -a -n "${BASH_SEAFLY_PROMPT_ENABLE}" ]; then
     SEAFLY_GIT_COLOR='\[\e[0;32m\]'
     SEAFLY_SHOW_USER=1
     SEAFLY_LAYOUT=2
-    source ${BASH_SEAFLY_PROMPT_DIR}
+    SEAFLY_PS2_PROMPT_SYMBOL='>'
+    source ${BASH_SEAFLY_PROMPT_FILE}
 fi
+
+function setSeaflyPrompt() {
+    BASH_SEAFLY_PROMPT_ENABLE=true
+    source ${BASH_SEAFLY_PROMPT_FILE}
+}
+
+function setOldPrompt() {
+    unset BASH_SEAFLY_PROMPT_ENABLE
+    unset PROMPT_COMMAND
+    __setup_prompt
+}
 
 function updateBashPromptCode {
     local oldCommitId
