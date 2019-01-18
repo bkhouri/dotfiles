@@ -39,6 +39,8 @@ brew install bash-completion2
 brew install go
 # brew install thefuck  # https://github.com/nvbn/thefuck
 
+#brew install readline
+
 # Install fun tools
 brew install fortune # https://opensource.com/article/18/12/linux-toy-fortune
 brew install cowsay  # https://opensource.com/article/18/12/linux-toy-cowsay
@@ -111,7 +113,7 @@ brew install prettyping
 ##brew install exiv2
 brew install git
 brew install git-lfs
-brew install bash-git-prompt
+#brew install bash-git-prompt
 #brew install imagemagick --with-webp
 #brew install lua
 #brew install lynx
@@ -121,10 +123,20 @@ brew install bash-git-prompt
 #brew install rename
 #brew install rlwrap
 #brew install ssh-copy-id
+brew install sqlite
 brew install tree
+#brew install telnet
 #brew install vbindiff
 #brew install zopfli
 
+# Work tools
+brew install maven
+brew install python
+brew install maven-completion
+brew install pip-completion
+brew install docker-compose-completion
+brew install docker-completion
+#brew install brew-cask-completion
 
 # Install diff-pdf https://github.com/vslavik/diff-pdf
 brew cask install xquartz
@@ -132,3 +144,47 @@ brew install diff-pdf
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+
+#adns
+#cairo
+#fontconfig
+#fortune
+#freetype
+#gawk
+#gdbm
+#gettext
+#glib
+#gmp
+#gnupg
+#gnutls
+#jpeg
+#libassuan
+#libffi
+#libgcrypt
+#libgpg-error
+#libksba
+#libpng
+#libtasn1
+#libtiff
+#libunistring
+#libusb
+#little-cms2
+#mockserver
+#mpfr
+#nettle
+#npth
+#nsnake
+#nspr
+#nss
+#openjpeg
+#openssl
+#p11-kit
+#pcre
+#pcre2
+#pinentry
+#pixman
+#poppler
+#python
+#wxmac
+#xz

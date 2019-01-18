@@ -246,17 +246,28 @@ function source_alias() {
 
 source_alias
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    source $(brew --prefix)/etc/bash_completion
-fi
+#[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+#[ -f $(brew --prefix)/etc/bash_completion ] && source $(brew --prefix)/etc/bash_completion
+##[ -f "$(brew --prefix)/share/bash-completion/bash_completion" ] && source $(brew --prefix)/share/bash-completion/bash_completion
+#[ -f "${GIT_COMPLETION_FILE}" ] && source ${GIT_COMPLETION_FILE}
+#[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
 
-if [ -f "${GIT_COMPLETION_FILE}" ] ; then
-    source ${GIT_COMPLETION_FILE}
-fi
+## declare an array variable
+declare -a files_to_source=(
+    "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    #"$(brew --prefix)/etc/bash_completion"
+    #"$(brew --prefix)/share/bash-completion/bash_completion"
+    ${GIT_COMPLETION_FILE}
+    "$(brew --prefix)/etc/profile.d/z.sh"
+    )
 
-if [ -f $(brew --prefix)/etc/profile.d/z.sh ] ; then
-    source $(brew --prefix)/etc/profile.d/z.sh
-fi
+## now loop through the above array
+for file in "${files_to_source[@]}"
+do
+   [ -f "$file}" ] && source "${file}"
+done
+
+
 
 function getAbsolutePath() {
     if [ -n "$1" ] ; then
@@ -325,3 +336,5 @@ function wttr()
     [ "$COLUMNS" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
+
+eval "$(thefuck --alias)"
