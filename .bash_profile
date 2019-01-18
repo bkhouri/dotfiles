@@ -55,8 +55,8 @@ HISTTIMEFORMAT='%F %T  '
 HISTSIZE=1000000
 
 # Bind lines reference https://www.macworld.com/article/1146015/os-x/termhistory.html
-#bind '"[A":history-search-backward'
-#bind '"[B":history-search-forward'
+bind '"[A":history-search-backward'
+bind '"[B":history-search-forward'
 
 export ORCA_VERSION=1.x-latest
 export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
