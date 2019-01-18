@@ -62,7 +62,7 @@ HISTSIZE=1000000
 export ORCA_VERSION=1.x-latest
 export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
 
-export PATH=${HOME}/Documents/bin:${HOME}/Documents/bin/platform-tools:${HOME}/Documents/git/scripts/bin:/usr/local/bin/:${PATH}
+export PATH=${HOME}/bin:${HOME}/Documents/bin:${HOME}/Documents/bin/platform-tools:${HOME}/Documents/git/scripts/bin:/usr/local/bin/:${PATH}
 export PYTHONPATH=${HOME}/Documents/git/autotest
 
 export PORT_NIFI=7777

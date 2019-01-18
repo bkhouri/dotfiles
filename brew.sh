@@ -36,6 +36,8 @@ brew install bash-completion2
 #  chsh -s /usr/local/bin/bash;
 #fi;
 
+brew install go
+
 # Install fun tools
 brew install fortune # https://opensource.com/article/18/12/linux-toy-fortune
 brew install cowsay  # https://opensource.com/article/18/12/linux-toy-cowsay

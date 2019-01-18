@@ -20,6 +20,25 @@ function runBashScript {
         echo "bash $@"
     fi
 }
+
+function installGitBash {
+    local outfile
+    local destination_path
+    echo -n "Installing gitbatch..."
+    # Download gitbatch https://github.com/isacikgoz/gitbatch
+    outfile=${HOME}/Downloads/gitbatch.tar.gz
+    destination_path=${HOME}/Documents/bin
+    mkdir -p $(dirname ${outfile})
+    mkdir -p ${destination_path}
+    curl  --silent  --location https://github.com/isacikgoz/gitbatch/releases/download/v0.4.1/gitbatch_0.4.1_darwin_amd64.tar.gz -o ${outfile}
+    tar -C ${destination_path} -xzf ${outfile}
+    rm -rf ${outfile}
+    unset outfile destination_dir
+    gitbatch=$(which gitbatch)
+    echo " installed in ${gitbatch}"
+    #go get -u github.com/isacikgoz/gitbatch
+}
+
 # Use > 1 to consume two arguments per pass in the loop (e.g. each
 # argument has a corresponding value to go with it).
 # Use > 0 to consume one or more arguments per pass in the loop (e.g.
@@ -50,6 +69,10 @@ if [ ! -d "${BASH_SEAFLY_PROMPT_DIR}" ] ; then
     git clone https://github.com/bluz71/bash-seafly-prompt.git ${BASH_SEAFLY_PROMPT_DIR}
 fi
 
+if [ -z "$(which gitbatch)" ] ; then
+    installGitBash
+fi
+
 if [ -n "${BOOTSTRAP}" ] ; then
-  runBashScript ${BASEDIR}/bootstrap.sh
+    runBashScript ${BASEDIR}/bootstrap.sh
 fi
