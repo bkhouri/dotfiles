@@ -37,6 +37,7 @@ brew install bash-completion2
 #fi;
 
 brew install go
+# brew install thefuck  # https://github.com/nvbn/thefuck
 
 # Install fun tools
 brew install fortune # https://opensource.com/article/18/12/linux-toy-fortune
