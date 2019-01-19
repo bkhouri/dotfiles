@@ -337,4 +337,4 @@ function wttr()
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
 
-eval "$(thefuck --alias)"
+[ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"

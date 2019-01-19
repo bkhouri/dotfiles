@@ -76,3 +76,5 @@ fi
 if [ -n "${BOOTSTRAP}" ] ; then
     runBashScript ${BASEDIR}/bootstrap.sh
 fi
+unset runBashScript
+unset installGitBash
