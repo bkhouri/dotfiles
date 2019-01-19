@@ -17,7 +17,7 @@ function printUsage() {
 
 function runBashScript {
     if [ -f "${1}" ] ; then
-        echo "bash $@"
+        bash $@
     fi
 }
 
