@@ -14,7 +14,7 @@ function doIt() {
 		--exclude ".gitignore" \
 		--exclude ".idea" \
 		-avh --no-perms . ~;
-	source ~/.bash_profile;
+	#source ${HOME}/.bash_profile;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

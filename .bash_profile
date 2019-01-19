@@ -239,6 +239,7 @@ function updateBashPromptCode {
 
 
 function source_alias() {
+    [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
     if [ -f ${BASH_ALIAS_FILE} ] ; then
         source ${BASH_ALIAS_FILE}
     fi
@@ -337,4 +338,3 @@ function wttr()
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
 
-[ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
