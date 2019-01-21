@@ -100,7 +100,7 @@ declare -a files_to_source=(
     #"$(brew --prefix)/etc/bash_completion"
     #"$(brew --prefix)/share/bash-completion/bash_completion"
     #${GIT_COMPLETION_FILE}
-    "${brew --prefix)/etc/bash_completion.d/git-completion.bash"
+    "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
     "$(brew --prefix)/etc/profile.d/z.sh"
     )
 
