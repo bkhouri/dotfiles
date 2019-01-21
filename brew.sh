@@ -137,6 +137,7 @@ brew install maven-completion
 brew install pip-completion
 brew install docker-compose-completion
 brew install docker-completion
+brew install ctop  # docker container top command  https://github.com/bcicen/ctop
 #brew install brew-cask-completion
 
 # Install diff-pdf https://github.com/vslavik/diff-pdf

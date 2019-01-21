@@ -216,4 +216,3 @@ alias path='echo -e ${PATH//:/\\n}'
 # The classic snake game on a terminal
 alias snake='docker run -ti dyego/snake-game'
 # display container top information
-alias ctop='docker run --rm --name ctop -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
