@@ -3,9 +3,10 @@
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 #for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-#    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-#done;
-#unset file;
+for file in ~/.{bash_prompt,aliases}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 ## Case-insensitive globbing (used in pathname expansion)
 #shopt -s nocaseglob;
@@ -76,175 +77,15 @@ export PORT_HEIMDALLR_REPL=4009
 export PORT_APOLLO_REPL=4080
 
 
-#parse_git_branch() {
-#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+
+
+#function source_alias() {
+#    if [ -f ${BASH_ALIAS_FILE} ] ; then
+#        source ${BASH_ALIAS_FILE}
+#    fi
 #}
-
-
-# get current branch in git repo
-function parse_git_branch() {
-    BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-    if [ ! "${BRANCH}" == "" ]
-    then
-        STAT=`parse_git_dirty`
-        echo "[${BRANCH}${STAT}]"
-    else
-        echo ""
-    fi
-}
-
-# get current status of git repo
-function parse_git_dirty {
-    status=`git status 2>&1 | tee`
-    dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-    untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-    ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-    newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-    renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-    deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-    bits=''
-    if [ "${renamed}" == "0" ]; then
-        bits=">${bits}"
-    fi
-    if [ "${ahead}" == "0" ]; then
-        bits="*${bits}"
-    fi
-    if [ "${newfile}" == "0" ]; then
-        bits="+${bits}"
-    fi
-    if [ "${untracked}" == "0" ]; then
-        bits="?${bits}"
-    fi
-    if [ "${deleted}" == "0" ]; then
-        bits="x${bits}"
-    fi
-    if [ "${dirty}" == "0" ]; then
-        bits='!'"${bits}"
-    fi
-    if [ ! "${bits}" == "" ]; then
-        echo " ${bits}"
-    else
-        echo ""
-    fi
-}
-
-
-parse_svn_branch() {
-  #parse_svn_url | sed -e s#^"$(parse_svn_repository_root)"##g | awk {print " (svn::"$1")" }
-  branch=$(svn info 2>/dev/null | grep '^URL:' | egrep -o '(tags|branches)/[^/]+|trunk' | egrep -o '[^/]+$')
-  if [ -n "${branch}" ] ; then
-    echo "(svn::${branch})"
-  fi
-}
-
-#if [ -f "${PROMPT_FILE}" ] ; then
-#    source ${PROMPT_FILE}
-#fi
-
-#export PS1="\n\[$(tput bold)\]\[$(tput setaf 6)\]\t \[$(tput setaf 2)\]\[$(tput setaf 3)\]\[$(tput setaf 2)\]\w\[$(tput setaf 1)\]\$(__git_ps1) \[$(tput sgr0)\]\n\$ "
-#export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(__git_ps1)\[\033[00m\] \n\$ "
-#export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(__git_ps1)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
-#export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(parse_git_branch)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
-#export PS1="\[\e]0;\W\a\]\n\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(parse_svn_branch)\$(parse_git_branch)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
-#export PS1="\[\e]0;\W\a\]\[$(tput setaf 6)\]\t \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \[\033[32m\]\$(parse_svn_branch)\$(parse_git_branch)\[\033[00m\] \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\$\[\e[0m\]; else echo \[\e[31m\]\$\[\e[0m\]; fi\` "
-
-
-# References from https://stackoverflow.com/questions/16715103/bash-prompt-with-last-exit-code
-function __setup_prompt() {
-    local EXIT="$?"                         # This needs to be first
-    local RCol='\[\e[0m\]'  # Text Reset
-
-    # Regular                    Bold                          Underline                     High Intensity                BoldHigh Intensity             Background                High Intensity Backgrounds
-    local Bla='\[\e[0;30m\]';    local BBla='\[\e[1;30m\]';    local UBla='\[\e[4;30m\]';    local IBla='\[\e[0;90m\]';    local BIBla='\[\e[1;90m\]';    local On_Bla='\e[40m';    local On_IBla='\[\e[0;100m\]';
-    local Red='\[\e[31m\]';      local BRed='\[\e[1;31m\]';    local URed='\[\e[4;31m\]';    local IRed='\[\e[0;91m\]';    local BIRed='\[\e[1;91m\]';    local On_Red='\e[41m';    local On_IRed='\[\e[0;101m\]';
-    local Gre='\[\e[0;32m\]';    local BGre='\[\e[1;32m\]';    local UGre='\[\e[4;32m\]';    local IGre='\[\e[0;92m\]';    local BIGre='\[\e[1;92m\]';    local On_Gre='\e[42m';    local On_IGre='\[\e[0;102m\]';
-    local Yel='\[\e[0;33m\]';    local BYel='\[\e[1;33m\]';    local UYel='\[\e[4;33m\]';    local IYel='\[\e[0;93m\]';    local BIYel='\[\e[1;93m\]';    local On_Yel='\e[43m';    local On_IYel='\[\e[0;103m\]';
-    local Blu='\[\e[0;34m\]';    local BBlu='\[\e[1;34m\]';    local UBlu='\[\e[4;34m\]';    local IBlu='\[\e[0;94m\]';    local BIBlu='\[\e[1;94m\]';    local On_Blu='\e[44m';    local On_IBlu='\[\e[0;104m\]';
-    local Pur='\[\e[0;35m\]';    local BPur='\[\e[1;35m\]';    local UPur='\[\e[4;35m\]';    local IPur='\[\e[0;95m\]';    local BIPur='\[\e[1;95m\]';    local On_Pur='\e[45m';    local On_IPur='\[\e[0;105m\]';
-    local Cya='\[\e[0;36m\]';    local BCya='\[\e[1;36m\]';    local UCya='\[\e[4;36m\]';    local ICya='\[\e[0;96m\]';    local BICya='\[\e[1;96m\]';    local On_Cya='\e[46m';    local On_ICya='\[\e[0;106m\]';
-    local Whi='\[\e[0;37m\]';    local BWhi='\[\e[1;37m\]';    local UWhi='\[\e[4;37m\]';    local IWhi='\[\e[0;97m\]';    local BIWhi='\[\e[1;97m\]';    local On_Whi='\e[47m';    local On_IWhi='\[\e[0;107m\]';
-
-    # PS1_DEFAULT="${Blu}\[$(tput setaf 6)\]\t "
-    # add timestamp
-    PS1="${Cya}\t ${RCol}"
-    PS1+="[\!] "
-    # Add previous terminal command error code to prompt if necessary
-    PS1+="\`retCode=\$?; if [ \${retCode} -ne 0 ]; then echo \"${BIRed}ErrorCode:\${retCode}${RCol} \";fi\`"
-
-    PS1+="${Gre}\u@\h "             # display username and host name
-    PS1+="${Yel}\w${RCol}"          # display full pwd
-    # Display version control information
-    PS1+=" ${Gre}\$(parse_svn_branch)${RCol}"
-    PS1+="${Gre}\$(parse_git_branch)${RCol}"
-
-    # Display a new line
-    PS1+="\n"
-
-    # indicate if we are running as user root
-    PS1+="\`if [ \"\${UID}\" = \"0\" ]; then echo \"${Yel}user:root${RCol} \"; fi\`"
-    #PS1+="[\!] "
-    # Display a terminating prompt
-    PS1+="${Yel}\$ ${RCol}"
-
-    export PS1
-}
-__setup_prompt
-
-BASH_SEAFLY_PROMPT_DIR=${HOME}/Documents/git/bash-seafly-prompt
-BASH_SEAFLY_PROMPT_FILE=${BASH_SEAFLY_PROMPT_DIR}/command_prompt.bash
-BASH_SEAFLY_PROMPT_ENABLE=true
-if [ -n "${BASH_SEAFLY_PROMPT_ENABLE}"  -a -f "${BASH_SEAFLY_PROMPT_FILE}" ]; then
-    # https://github.com/bluz71/bash-seafly-prompt
-    SEAFLY_PROMPT_PREFIX='if [ -n "${VIRTUAL_ENV}" ]; then echo "($(basename ${VIRTUAL_ENV}))"; fi'
-    SEAFLY_PROMPT_SYMBOL="\n❯"
-    SEAFLY_PROMPT_SYMBOL="\n$"
-    SEAFLY_GIT_PREFIX="("
-    SEAFLY_GIT_SUFFIX=")"
-    #SEAFLY_HOST_COLOR='\[\e[0;32m\]'
-    #SEAFLY_PATH_COLOR='\[\e[0;33m\]'
-    #SEAFLY_GIT_COLOR='\[\e[0;32m\]'
-    SEAFLY_SHOW_USER=1
-    SEAFLY_LAYOUT=2
-    SEAFLY_PS2_PROMPT_SYMBOL='>'
-    SEAFLY_NORMAL_COLOR="$(tput setaf 63)"
-    SEAFLY_ALERT_COLOR="$(tput setaf 202)"
-    SEAFLY_HOST_COLOR="$(tput setaf 242)"
-    SEAFLY_GIT_COLOR="$(tput setaf 99)"
-    SEAFLY_PATH_COLOR="$(tput setaf 70)"
-    source ${BASH_SEAFLY_PROMPT_FILE}
-fi
-
-function setSeaflyPrompt() {
-    BASH_SEAFLY_PROMPT_ENABLE=true
-    source ${BASH_SEAFLY_PROMPT_FILE}
-}
-
-function setOldPrompt() {
-    unset BASH_SEAFLY_PROMPT_ENABLE
-    unset PROMPT_COMMAND
-    __setup_prompt
-}
-
-function updateBashPromptCode {
-    local oldCommitId
-    local newCommitId
-    cd ${BASH_SEAFLY_PROMPT_DIR}
-    oldCommitId=$(git rev-parse HEAD )
-    git pull --quiet
-    newCommitId=$(git rev-parse HEAD)
-    cd - 1>&2
-    echo "Old commit ID: ${oldCommitId}"
-    echo "New Commit ID: ${newCommitId}"
-}
-
-
-function source_alias() {
-    if [ -f ${BASH_ALIAS_FILE} ] ; then
-        source ${BASH_ALIAS_FILE}
-    fi
-}
-
-source_alias
+#
+#source_alias
 
 #[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 #[ -f $(brew --prefix)/etc/bash_completion ] && source $(brew --prefix)/etc/bash_completion
@@ -257,14 +98,15 @@ declare -a files_to_source=(
     "$(brew --prefix)/etc/profile.d/bash_completion.sh"
     #"$(brew --prefix)/etc/bash_completion"
     #"$(brew --prefix)/share/bash-completion/bash_completion"
-    ${GIT_COMPLETION_FILE}
+    #${GIT_COMPLETION_FILE}
+    "${brew --prefix)/etc/bash_completion.d/git-completion.bash"
     "$(brew --prefix)/etc/profile.d/z.sh"
     )
 
 ## now loop through the above array
 for file in "${files_to_source[@]}"
 do
-   [ -f "$file}" ] && source "${file}"
+   [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
 done
 
 

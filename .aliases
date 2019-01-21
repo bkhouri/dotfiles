@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
+alias cddeployments="cd ${ROBOT_LOCAL_DEPLOYMENTS_DIR}"
 alias cdgit="cd ${HOME}/Documents/git"
 
 #alias lein=' docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
+alias cenx-platform-client='node ~/Documents/git/customization-schema/src/main/resources/lib/cli/cli.js'
+alias cpc=cenx-platform-client
 
-#alias ls="ls -GFh"
-#alias ll="ls -alGFh"
+alias ls="ls -GFh"
+alias ll="ls -alGFh"
 
-#alias grep="grep --color=auto"           # show differences in color
-#alias egrep="egrep --color=auto"         # show differences in color
-#alias fgrep="fgrep --color=auto"         # show differences in color
+alias grep="grep --color=auto"           # show differences in color
+alias egrep="egrep --color=auto"         # show differences in color
+alias fgrep="fgrep --color=auto"         # show differences in color
 
 alias distinct_file_separator='for _ in $(seq 0 1000); do echo ""; done'
 
@@ -20,13 +23,46 @@ alias killtest='set -x && adb root && adb wait-for-device && adb shell kill $(ad
 
 alias uninstall_3rd_party_app='for f in $(adb shell pm list package -3); do APP="$(echo $f | cut -c9-)"; set -x; adb uninstall ${APP%?}; set +x; done'
 
-alias ride="python-32 /usr/local/bin/ride.py &"
+#alias ride="python-32 /usr/local/bin/ride.py &"
 
-# Mac tools
+
+
+# Application Aliases
+alias sublime="/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
+
+# https://remysharp.com/2018/08/23/cli-improved
 [ -n $(which bat) ] && alias cat="bat"
 [ -n $(which prettyping) ] && alias ping="prettyping"
+
+##alias cdgit="cd ${HOME}/Documents/git"
+#
+##alias lein=' docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
+#
+##alias ls="ls -GFh"
+##alias ll="ls -alGFh"
+#
+##alias grep="grep --color=auto"           # show differences in color
+##alias egrep="egrep --color=auto"         # show differences in color
+##alias fgrep="fgrep --color=auto"         # show differences in color
+#
+#alias distinct_file_separator='for _ in $(seq 0 1000); do echo ""; done'
+#
+##alias screwyouit='curl --proxy-user bkhouri:ScrewYouIT --user bkhouri:ScrewYouIT --url http://www.google.com'
+#alias screwyouit='wget --http-user bkhouri --http-password screwyouit http://www.google.com && rm index.html'
+##alias killtest='adb root && adb wait-for-device && adb shell kill $(adb shell ps | grep test | awk "{print $2}")'
+#alias killtest='set -x && adb root && adb wait-for-device && adb shell kill $(adb shell ps | grep test | awk "{print $2}") && set +x'
+#
+#lias uninstall_3rd_party_app='for f in $(adb shell pm list package -3); do APP="$(echo $f | cut -c9-)"; set -x; adb uninstall ${APP%?}; set +x; done'
+#
+#alias ride="python-32 /usr/local/bin/ride.py &"
+#
+## Mac tools
+#alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+#
+##[ -n $(which bat) ] && alias cat="bat"
+##[ -n $(which prettyping) ] && alias ping="prettyping"
 
 
 # Easier navigation: .., ..., ...., ....., ~ and -
