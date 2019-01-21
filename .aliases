@@ -212,3 +212,5 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # The classic snake game on a terminal
 alias snake='docker run -ti dyego/snake-game'
+
+[ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"

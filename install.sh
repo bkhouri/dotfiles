@@ -17,7 +17,7 @@ function printUsage() {
 
 function runBashScript {
     if [ -f "${1}" ] ; then
-        echo "bash $@"
+        bash $@
     fi
 }
 
@@ -76,3 +76,5 @@ fi
 if [ -n "${BOOTSTRAP}" ] ; then
     runBashScript ${BASEDIR}/bootstrap.sh
 fi
+unset runBashScript
+unset installGitBash
