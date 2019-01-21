@@ -3,7 +3,7 @@
 alias cddeployments="cd ${ROBOT_LOCAL_DEPLOYMENTS_DIR}"
 alias cdgit="cd ${HOME}/Documents/git"
 
-#alias lein=' docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
+#alias lein='docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
 alias cenx-platform-client='node ~/Documents/git/customization-schema/src/main/resources/lib/cli/cli.js'
 alias cpc=cenx-platform-client
 
@@ -38,7 +38,7 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 ##alias cdgit="cd ${HOME}/Documents/git"
 #
-##alias lein=' docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
+##alias lein='docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
 #
 ##alias ls="ls -GFh"
 ##alias ll="ls -alGFh"
@@ -210,7 +210,10 @@ alias pumpitup="osascript -e 'set volume output volume 100'"
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
+[ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
+
+## Docker aliases
 # The classic snake game on a terminal
 alias snake='docker run -ti dyego/snake-game'
-
-[ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
+# display container top information
+alias ctop='docker run --rm --name ctop -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
