@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-alias cddeployments="cd ${ROBOT_LOCAL_DEPLOYMENTS_DIR}"
+alias cddeployments="cd ${HOME}/Documents/CENX/deployments"
 alias cdgit="cd ${HOME}/Documents/git"
 
 #alias lein='docker run --rm -it -e LEIN_USERNAME=bassam.khouri -e LEIN_PASSWORD=a1xAYDtn! -v `pwd`:/code -v ~/.m2:/root/.m2 ship.cenx.com:5000/lein'
