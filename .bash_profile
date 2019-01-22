@@ -102,6 +102,13 @@ declare -a files_to_source=(
     #${GIT_COMPLETION_FILE}
     "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
     "$(brew --prefix)/etc/profile.d/z.sh"
+    "$(brew --prefix)/etc/bash_completion.d/docker"
+    "$(brew --prefix)/etc/bash_completion.d/docker-compose"
+    "$(brew --prefix)/etc/bash_completion.d/pip"
+    "$(brew --prefix)/etc/bash_completion.d/maven"
+    "$(brew --prefix)/etc/bash_completion.d/bat.bash"
+    "$(brew --prefix)/etc/bash_completion.d/exa"
+    "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
     )
 
 ## now loop through the above array
