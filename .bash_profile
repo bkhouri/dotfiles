@@ -3,7 +3,7 @@
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 #for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-for file in ~/.{bash_prompt,aliases}; do
+for file in ~/.{bash_prompt,exports,aliases}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
@@ -56,25 +56,7 @@ PROMPT_FILE=${HOME}/.prompt.bash
 bind '"[A":history-search-backward'
 bind '"[B":history-search-forward'
 
-export ORCA_VERSION=1.x-latest
-export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
 export PATH=${HOME}/bin:${HOME}/Documents/bin:${HOME}/Documents/bin/platform-tools:${HOME}/Documents/git/scripts/bin:/usr/local/bin/:${PATH}
-export PYTHONPATH=${HOME}/Documents/git/autotest
-
-export PORT_NIFI=7777
-export PORT_RETHINKDB=28080
-export PORT_WILDFLY_DC=9990
-export PORT_ZK=2181
-export PORT_KAFKA=9092
-export PORT_SOLR=8983
-export PORT_PARKER_REPL=4081
-export PORT_TERMINUS_REPL=4083
-export PORT_NARANATHU_REPL=4015
-export PORT_HEIMDALLR_REPL=4009
-export PORT_APOLLO_REPL=4080
-
-
-
 
 #function source_alias() {
 #    [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
