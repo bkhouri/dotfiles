@@ -8,11 +8,12 @@ function doIt() {
     rsync --exclude ".git/" \
         --exclude ".DS_Store" \
         --exclude ".osx" \
-        --exclude "bootstrap.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
         --exclude ".gitignore" \
         --exclude ".idea" \
+        --exclude "*.iml" \
+        --exclude "*.sh" \
         -avh --no-perms . ~;
     #source ${HOME}/.bash_profile;
 }
