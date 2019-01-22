@@ -16,6 +16,9 @@
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 #export HISTSIZE='32768';
 #export HISTFILESIZE="${HISTSIZE}";
+export HISTTIMEFORMAT='%F %T >> '
+export HISTSIZE=1000000
+
 # Omit duplicates and commands that begin with a space from history.
 #export HISTCONTROL='ignoreboth';
 
@@ -32,3 +35,6 @@
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 #export GPG_TTY=$(tty);
+
+# Work related exports
+export ROBOT_LOCAL_DEPLOYMENT_DIR=${HOME}/Documents/CENX/deployments

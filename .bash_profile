@@ -52,9 +52,6 @@ BASH_ALIAS_FILE=${HOME}/.bash_alias
 GIT_COMPLETION_FILE=${HOME}/.git-completion.bash
 PROMPT_FILE=${HOME}/.prompt.bash
 
-HISTTIMEFORMAT='%F %T  '
-HISTSIZE=1000000
-
 # Bind lines reference https://www.macworld.com/article/1146015/os-x/termhistory.html
 bind '"[A":history-search-backward'
 bind '"[B":history-search-forward'
@@ -186,4 +183,5 @@ function wttr()
     [ "$COLUMNS" -lt 125 ] && request+='?n'
     curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
+
 

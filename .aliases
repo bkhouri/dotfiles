@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 alias cddeployments="cd ${ROBOT_LOCAL_DEPLOYMENTS_DIR}"
 alias cdgit="cd ${HOME}/Documents/git"
 
