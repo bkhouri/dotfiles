@@ -3,8 +3,8 @@
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 #for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-for file in ~/.{bash_prompt,exports,aliases}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+for file in ~/.{bash_prompt,exports,aliases,functions}; do
+    [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
 done;
 unset file;
 
@@ -48,9 +48,9 @@ shopt -s histappend;
 
 
 
-BASH_ALIAS_FILE=${HOME}/.bash_alias
-GIT_COMPLETION_FILE=${HOME}/.git-completion.bash
-PROMPT_FILE=${HOME}/.prompt.bash
+#BASH_ALIAS_FILE=${HOME}/.bash_alias
+#GIT_COMPLETION_FILE=${HOME}/.git-completion.bash
+#PROMPT_FILE=${HOME}/.prompt.bash
 
 # Bind lines reference https://www.macworld.com/article/1146015/os-x/termhistory.html
 bind '"[A":history-search-backward'
@@ -95,14 +95,6 @@ for file in "${files_to_source[@]}"
 do
    [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
 done
-
-
-
-function getAbsolutePath() {
-    if [ -n "$1" ] ; then
-        LOCAL_VARIABLE="${1}" && echo $(cd $(dirname "$LOCAL_VARIABLE") && pwd -P)/$(basename "$LOCAL_VARIABLE")
-    fi
-}
 
 ### Orca stuff
 if [ $(which docker-credential-osxkeychain) ]; then
