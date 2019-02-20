@@ -37,7 +37,7 @@ export HISTSIZE=1000000
 #export GPG_TTY=$(tty);
 
 # Work related exports
-export ROBOT_LOCAL_DEPLOYMENT_DIR=${HOME}/Documents/CENX/deployments
+export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
 export PYTHONPATH=${HOME}/Documents/git/autotest
 export PORT_NIFI=7777
 export PORT_RETHINKDB=28080
