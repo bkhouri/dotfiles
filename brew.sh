@@ -37,7 +37,6 @@ brew install bash-completion2
 #  chsh -s /usr/local/bin/bash;
 #fi;
 
-brew install go
 # brew install thefuck  # https://github.com/nvbn/thefuck
 
 #brew install readline
@@ -133,10 +132,12 @@ brew install tree
 # Work tools
 brew install maven
 brew install python
+brew install go
 brew install maven-completion
 brew install pip-completion
 brew install docker-compose-completion
 brew install docker-completion
+brew install kubernetes-helm
 brew install ctop  # docker container top command  https://github.com/bcicen/ctop
 #brew install brew-cask-completion
 
