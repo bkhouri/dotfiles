@@ -82,6 +82,7 @@ declare -a files_to_source=(
     "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"
     "$(brew --prefix)/etc/profile.d/z.sh"
     "$(brew --prefix)/etc/bash_completion.d/docker"
+    "$(brew --prefix)/etc/bash_completion.d/brew"
     "$(brew --prefix)/etc/bash_completion.d/docker-compose"
     "$(brew --prefix)/etc/bash_completion.d/pip"
     "$(brew --prefix)/etc/bash_completion.d/maven"
