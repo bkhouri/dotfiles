@@ -38,7 +38,7 @@ export HISTSIZE=10000
 
 # Work related exports
 export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
-export PYTHONPATH=${HOME}/Documents/git/autotest
+export PYTHONPATH=${HOME}/Documents/git/autotest:${HOME}/Documents/git/autotest/resources/rflint
 export PORT_NIFI=7777
 export PORT_RETHINKDB=28080
 export PORT_WILDFLY_DC=9990
