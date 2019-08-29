@@ -145,12 +145,12 @@ brew install ctop  # docker container top command  https://github.com/bcicen/cto
 #brew install brew-cask-completion
 
 # Install minikube
-brew cask install minikube
-brew install docker-machine-driver-hyperkit
+#brew cask install minikube
+#brew install docker-machine-driver-hyperkit
 
-# docker-machine-driver-hyperkit need root owner and uid
-sudo chown root:wheel /usr/local/opt/docker-machine-driver-hyperkit/bin/docker-machine-driver-hyperkit
-sudo chmod u+s /usr/local/opt/docker-machine-driver-hyperkit/bin/docker-machine-driver-hyperkit
+## docker-machine-driver-hyperkit need root owner and uid
+#sudo chown root:wheel /usr/local/opt/docker-machine-driver-hyperkit/bin/docker-machine-driver-hyperkit
+#sudo chmod u+s /usr/local/opt/docker-machine-driver-hyperkit/bin/docker-machine-driver-hyperkit
 ### DONE minikube install
 
 # Install diff-pdf https://github.com/vslavik/diff-pdf

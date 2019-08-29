@@ -56,7 +56,7 @@ shopt -s histappend;
 bind '"[A":history-search-backward'
 bind '"[B":history-search-forward'
 
-export PATH=${HOME}/bin:${HOME}/Documents/bin:${HOME}/Documents/bin/platform-tools:${HOME}/Documents/git/scripts/bin:/usr/local/bin/:${PATH}
+export PATH=${HOME}/bin:${HOME}/Documents/bin:${HOME}/Documents/bin/platform-tools:${HOME}/Documents/git/scripts/bin:/usr/local/bin:${PATH}
 
 #function source_alias() {
 #    [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
