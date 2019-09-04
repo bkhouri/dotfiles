@@ -140,6 +140,7 @@ brew install docker-compose-completion
 brew install docker-completion
 brew install kubernetes-cli
 brew install kubernetes-helm
+brew cask install mattermost
 
 brew install ctop  # docker container top command  https://github.com/bcicen/ctop
 #brew install brew-cask-completion
