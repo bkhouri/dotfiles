@@ -37,18 +37,18 @@ export HISTSIZE=10000
 #export GPG_TTY=$(tty);
 
 # Work related exports
-export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
-export PYTHONPATH=${HOME}/Documents/git/autotest:${HOME}/Documents/git/autotest/resources/rflint
-export PORT_NIFI=7777
-export PORT_RETHINKDB=28080
-export PORT_WILDFLY_DC=9990
-export PORT_ZK=2181
-export PORT_KAFKA=9092
-export PORT_SOLR=8983
-export PORT_PARKER_REPL=4081
-export PORT_TERMINUS_REPL=4083
-export PORT_NARANATHU_REPL=4015
-export PORT_HEIMDALLR_REPL=4009
-export PORT_APOLLO_REPL=4080
+# export ROBOT_LOCAL_DEPLOYMENTS_DIR=${HOME}/Documents/CENX/deployments
+# export PYTHONPATH=${HOME}/Documents/git/autotest:${HOME}/Documents/git/autotest/resources/rflint
+# export PORT_NIFI=7777
+# export PORT_RETHINKDB=28080
+# export PORT_WILDFLY_DC=9990
+# export PORT_ZK=2181
+# export PORT_KAFKA=9092
+# export PORT_SOLR=8983
+# export PORT_PARKER_REPL=4081
+# export PORT_TERMINUS_REPL=4083
+# export PORT_NARANATHU_REPL=4015
+# export PORT_HEIMDALLR_REPL=4009
+# export PORT_APOLLO_REPL=4080
 
-export ORCA_VERSION=1.x-latest
+# export ORCA_VERSION=1.x-latest

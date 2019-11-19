@@ -11,6 +11,8 @@ function printUsage() {
     echo ""
     echo "Options:"
     echo "   --bootstrap  When set, will bootstrap all the dot files in this repository"
+	echo "   --no-brew    When set, will not install brew formulaes"
+	echo "   --xcode      When set, it will install xcode"
     echo ""
 }
 
@@ -52,6 +54,14 @@ do
             shift # past argument
             BOOTSTRAP=true
             ;;
+        --xcode)
+            shift
+            INSTALL_XCODE=true
+            ;;
+		--no-brew)
+		   shift
+		   IGNORE_BREW_INSTALL=true
+		   ;;
         *)
             # unknown option
             echo "Unknown Option: $1"
@@ -61,7 +71,9 @@ do
     esac
 done
 
-runBashScript ${BASEDIR}/brew.sh
+if [ -z "${IGNORE_BREW_INSTALL}" ]; then
+	runBashScript ${BASEDIR}/brew.sh
+fi
 
 BASH_SEAFLY_PROMPT_DIR=${GIT_DIR}/bash-seafly-prompt
 if [ ! -d "${BASH_SEAFLY_PROMPT_DIR}" ] ; then
@@ -76,5 +88,16 @@ fi
 if [ -n "${BOOTSTRAP}" ] ; then
     runBashScript ${BASEDIR}/bootstrap.sh
 fi
+
+if [ -n "${INSTALL_XCODE}" ] ; then
+	echo "Installing xcode..."
+	xcode-select --install
+	return_code=$(echo $?)
+	if [ ${return_code} -ne 0 ]; then
+		echo "Failed to instal xcode.  Return code was ${return_code}."
+	fi
+fi
+
 unset runBashScript
 unset installGitBash
+unset return_code

@@ -132,6 +132,16 @@ brew install tree
 # Work tools
 brew install maven
 brew install python
+brew install node@12
+# Node version 12 env vars based in installation via brew
+echo '' >> ~/.bash_profile
+echo '# Node version 12 env vars based in installation via brew - this section was generated via the brew.sh script in the dotfiles repo'  >> ~/.bash_profile
+echo 'export PATH="/usr/local/opt/node@12/bin:${PATH}"' >> ~/.bash_profile
+echo 'export LDFLAGS="-L/usr/local/opt/node@12/lib"' >> ~/.bash_profile
+echo 'export CPPFLAGS="-I/usr/local/opt/node@12/include"' >> ~/.bash_profile
+echo '' >> ~/.bash_profile
+
+
 brew install yarn
 brew install yarn-completion
 # brew install go
