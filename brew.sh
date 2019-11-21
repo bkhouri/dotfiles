@@ -140,6 +140,7 @@ echo 'export PATH="/usr/local/opt/node@12/bin:${PATH}"' >> ~/.bash_profile
 echo 'export LDFLAGS="-L/usr/local/opt/node@12/lib"' >> ~/.bash_profile
 echo 'export CPPFLAGS="-I/usr/local/opt/node@12/include"' >> ~/.bash_profile
 echo '' >> ~/.bash_profile
+brew install repo
 
 
 brew install yarn
