@@ -1,0 +1,3 @@
+if [ -f "/Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc" ]; then
+    source /Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc
+fi

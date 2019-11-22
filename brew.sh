@@ -113,6 +113,7 @@ brew install prettyping
 ##brew install exiv2
 brew install git
 brew install git-lfs
+brew install git-review  # automates and streamlines some of the tasks involved with submitting local changes to a Gerrit server for review
 #brew install bash-git-prompt
 #brew install imagemagick --with-webp
 #brew install lua

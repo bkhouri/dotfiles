@@ -3,7 +3,7 @@
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 #for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-for file in ~/.{bash_prompt,exports,aliases,functions}; do
+for file in ~/.{bash_prompt,exports,aliases,functions,work}; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
 done;
 unset file;
@@ -103,21 +103,6 @@ if [ $(which docker-credential-osxkeychain) ]; then
 fi
 
 #### Git stuff
-
-function gc() {
-    if [ -z "$1" ] ; then
-        echo "*******************************************"
-        echo "*   !!! WARNING !!!  Repo not cloned      *"
-        echo "*******************************************"
-        echo ""
-        echo "Silly me!!! I need to specify a parameter, to repo to clone (without cenx-cf/)"
-    else
-       set -x
-       git clone git@bitbucket.org:cenx-cf/$@
-       set +x
-    fi
-}
-
 
 function git_create_branch() {
     if [ -z "$1" ] ; then
