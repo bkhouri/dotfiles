@@ -142,6 +142,8 @@ echo 'export LDFLAGS="-L/usr/local/opt/node@12/lib"' >> ~/.bash_profile
 echo 'export CPPFLAGS="-I/usr/local/opt/node@12/include"' >> ~/.bash_profile
 echo '' >> ~/.bash_profile
 brew install repo
+brew tap bazelbuild/tap
+brew install bazelbuild/tap/bazel
 
 
 brew install yarn
