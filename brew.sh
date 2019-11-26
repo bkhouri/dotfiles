@@ -133,6 +133,7 @@ brew install tree
 # Work tools
 brew install maven
 brew install python
+brew install pipenv
 brew install node@12
 # Node version 12 env vars based in installation via brew
 echo '' >> ~/.bash_profile
@@ -142,8 +143,8 @@ echo 'export LDFLAGS="-L/usr/local/opt/node@12/lib"' >> ~/.bash_profile
 echo 'export CPPFLAGS="-I/usr/local/opt/node@12/include"' >> ~/.bash_profile
 echo '' >> ~/.bash_profile
 brew install repo
-brew tap bazelbuild/tap
-brew install bazelbuild/tap/bazel
+# brew tap bazelbuild/tap
+# brew install bazelbuild/tap/bazel
 
 
 brew install yarn
