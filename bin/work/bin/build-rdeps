@@ -1,0 +1,8 @@
+#/bin/bash
+ 
+set -e
+ 
+TARGET="${1}"
+shift 1
+ 
+bazel cquery "$@" "kind('cc_.*', rdeps(//..., ${TARGET}))" | cut -d' ' -f1 | xargs bazel build "$@"
