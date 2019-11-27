@@ -90,6 +90,7 @@ declare -a files_to_source=(
     "$(brew --prefix)/etc/bash_completion.d/exa"
     "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
     "${HOME}/.bazel/bin/bazel-complete.bash"
+    "/usr/local/lib/bazel/bin/bazel-complete.bash"
     )
 
 ## now loop through the above array
