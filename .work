@@ -8,7 +8,8 @@ fi
 
 export PATH=${HOME}/bin/work/bin:${PATH}
 
-if [ -z `git config --list | grep user.email | grep ${WORK_EMAIL}` ] ; then
+user_email=`git config --list | grep user.email | grep ${WORK_EMAIL}`
+if [ -z "${user_email}"  ] ; then
     echo "Updating git config user.email to ${WORK_EMAIL}"
     git config --global user.email ${WORK_EMAIL}
 fi
