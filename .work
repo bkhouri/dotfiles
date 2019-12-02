@@ -1,6 +1,9 @@
 WORK_EMAIL=bkhouri@apple.com
 
+# Disable homebrew anonymous aggregate formulae and cask analytics
+# https://docs.brew.sh/Analytics
 export HOMEBREW_ANALYTICS_OFF=1
+export HOMEBREW_NO_ANALYTICS=1
 
 if [ -f "/Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc" ]; then
     source /Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc
