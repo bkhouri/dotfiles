@@ -20,8 +20,9 @@
 	name = Bassam Khouri
 	email = bassam.khouri@gmail.com
 [core]
-	excludesfile = /Users/bassam.khouri/.gitignore_global
+	excludesfile = ${HOME}/.gitignore_global
 	autocrlf = input
+	hooksPath = ${HOME}/.git-all/hook
 # [difftool "sourcetree"]
 # 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 # 	path =
