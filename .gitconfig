@@ -22,7 +22,7 @@
 [core]
 	excludesfile = ${HOME}/.gitignore_global
 	autocrlf = input
-	hooksPath = ${HOME}/.git-all/hook
+	hooksPath = ${HOME}/.git-all/hooks
 # [difftool "sourcetree"]
 # 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 # 	path =

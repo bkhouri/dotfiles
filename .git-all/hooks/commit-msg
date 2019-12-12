@@ -32,7 +32,7 @@ fi
 if [ "$GITAUTOWRAP" = "true" ]; then
     echo "Wrapping commit message to 72 characters..."
     exec < /dev/tty
-    .git/hooks/auto-wrap-72-char.py $1
+    ${HOME}/.git-all/hooks/auto-wrap-72-char.py $1
     #/usr/bin/fold -w 72 -s $1 > $1
 fi
 
