@@ -155,3 +155,7 @@ endif
 " Highlight extra whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+
+# Set vertical column marker at 72 characters, 80 and 120
+set colorcolumn=72,+8,+48

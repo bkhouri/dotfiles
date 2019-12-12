@@ -10,6 +10,7 @@ if [ -f "/Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc" ]; then
 fi
 
 export PATH=${HOME}/bin/work/bin:${PATH}
+export GITAUTOWRAP	=true
 
 user_email=`git config --list | grep user.email | grep ${WORK_EMAIL}`
 if [ -z "${user_email}"  ] ; then
