@@ -93,7 +93,7 @@ set laststatus=2
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 
 " Enable mouse in all modes, if this is set, we are unable to copy
-set mouse=a
+"set mouse=a
 
 " Disable error bells
 "set noerrorbells

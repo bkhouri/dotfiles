@@ -2,6 +2,7 @@
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GIT_DIR=${HOME}/Documents/git
+INSTALL_WORK_SCRIPT="${BASEDIR}/install-work.sh"
 
 function printUsage() {
     echo ""
@@ -11,8 +12,9 @@ function printUsage() {
     echo ""
     echo "Options:"
     echo "   --bootstrap  When set, will bootstrap all the dot files in this repository"
-	echo "   --no-brew    When set, will not install brew formulaes"
-	echo "   --xcode      When set, it will install xcode"
+    echo "   --no-brew    When set, will not install brew formulaes"
+    echo "   --xcode      When set, it will install xcode"
+    echo "   --work       When set, run script ${INSTALL_WORK_SCRIPT}"
     echo ""
 }
 
@@ -26,7 +28,7 @@ function runBashScript {
 function installGitBash {
     local outfile
     local destination_path
-    echo -n "Installing gitbatch..."
+    cat <<< "Installing gitbatch..."
     # Download gitbatch https://github.com/isacikgoz/gitbatch
     outfile=${HOME}/Downloads/gitbatch.tar.gz
     destination_path=${HOME}/Documents/bin
@@ -37,7 +39,7 @@ function installGitBash {
     rm -rf ${outfile}
     unset outfile destination_dir
     gitbatch=$(which gitbatch)
-    echo " installed in ${gitbatch}"
+    cat <<< " installed at ${gitbatch}"
     #go get -u github.com/isacikgoz/gitbatch
 }
 
@@ -58,10 +60,14 @@ do
             shift
             INSTALL_XCODE=true
             ;;
-		--no-brew)
-		   shift
-		   IGNORE_BREW_INSTALL=true
-		   ;;
+        --no-brew)
+           shift
+           IGNORE_BREW_INSTALL=true
+           ;;
+        --work)
+            shift
+            INSTALL_WORK=true
+            ;;
         *)
             # unknown option
             echo "Unknown Option: $1"
@@ -72,7 +78,7 @@ do
 done
 
 if [ -z "${IGNORE_BREW_INSTALL}" ]; then
-	runBashScript ${BASEDIR}/brew.sh
+    runBashScript ${BASEDIR}/brew.sh
 fi
 
 BASH_SEAFLY_PROMPT_DIR=${GIT_DIR}/bash-seafly-prompt
@@ -81,23 +87,36 @@ if [ ! -d "${BASH_SEAFLY_PROMPT_DIR}" ] ; then
     git clone https://github.com/bluz71/bash-seafly-prompt.git ${BASH_SEAFLY_PROMPT_DIR}
 fi
 
-if [ -z "$(which gitbatch)" ] ; then
-    installGitBash
-fi
+# if [ -z "$(which gitbatch)" ] ; then
+#     installGitBash
+# fi
 
 if [ -n "${BOOTSTRAP}" ] ; then
-    runBashScript ${BASEDIR}/bootstrap.sh
+	cat <<< "Bootstraping..."
+    BOOTSTRAP_ARGS=()
+    if [ ${INSTALL_WORK} ] ;  then
+        BOOTSTRAP_ARGS+=(--work)
+    fi
+    runBashScript ${BASEDIR}/bootstrap.sh "${BOOTSTRAP_ARGS[@]}"
 fi
 
 if [ -n "${INSTALL_XCODE}" ] ; then
-	echo "Installing xcode..."
-	xcode-select --install
-	return_code=$(echo $?)
-	if [ ${return_code} -ne 0 ]; then
-		echo "Failed to instal xcode.  Return code was ${return_code}."
-	fi
+    echo "Installing xcode..."
+    xcode-select --install
+    return_code=$(echo $?)
+    if [ ${return_code} -ne 0 ]; then
+        echo "Failed to instal xcode.  Return code was ${return_code}."
+    fi
 fi
 
+
+if [ -n "${INSTALL_WORK}" ] ; then
+    if [ -f "${INSTALL_WORK_SCRIPT}" ] ; then
+        ${INSTALL_WORK_SCRIPT}
+    else
+        echo "WARNING: WOrk install script not found: ${INSTALL_WORK_SCRIPT}"
+    fi
+fi
 unset runBashScript
 unset installGitBash
 unset return_code

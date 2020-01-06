@@ -114,6 +114,11 @@ brew install prettyping
 brew install git
 brew install git-lfs
 brew install git-review  # automates and streamlines some of the tasks involved with submitting local changes to a Gerrit server for review
+
+# Install gitbatch --> Ref: https://github.com/isacikgoz/gitbatch
+brew tap isacikgoz/taps
+brew install gitbatch
+
 #brew install bash-git-prompt
 #brew install imagemagick --with-webp
 #brew install lua
@@ -160,7 +165,7 @@ brew install brew-cask-completion
 # brew cask install mattermost
 
 brew install ctop  # docker container top command  https://github.com/bcicen/ctop
-#brew install brew-cask-completion
+brew install brew-cask-completion
 
 # Install minikube
 #brew cask install minikube
