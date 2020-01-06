@@ -2,6 +2,7 @@
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GIT_DIR=${HOME}/Documents/git
+GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
 
 function printUsage() {
     echo ""
@@ -33,7 +34,7 @@ done
 
 function installGitHelpers() {
     echo ""
-    read -n1 -p "Did you visually confirm this computers public SSH key is added to the github account? [Y/n] " REPLY
+    read -n1 -p "Did you visually confirm this computers public SSH key is added to github.pie.apple.com? [Y/n] " REPLY
     echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
@@ -45,7 +46,6 @@ function installGitHelpers() {
     fi
 }
 
-GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
 # GIT_HELPERS_DIR=${HOME}/bin/work
 # set -x
 if [ ! -d ${GIT_HELPERS_DIR} ] ; then
