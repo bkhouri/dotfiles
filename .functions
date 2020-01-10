@@ -20,8 +20,11 @@ man() {
 
 function getAbsolutePath() {
     if [ -n "$1" ] ; then
-        LOCAL_VARIABLE="${1}" && echo $(cd $(dirname "$LOCAL_VARIABLE") && pwd -P)/$(basename "$LOCAL_VARIABLE")
-
+        if [ -d "${1}" ] ; then
+            LOCAL_VARIABLE="${1}" && echo $(cd "$LOCAL_VARIABLE" && pwd -P)
+        else
+            LOCAL_VARIABLE="${1}" && echo $(cd $(dirname "$LOCAL_VARIABLE") && pwd -P)/$(basename "$LOCAL_VARIABLE")
+        fi
     fi
 }
 
@@ -117,11 +120,11 @@ function getAbsolutePath() {
 
 # Compare original and gzipped file size
 function gz() {
-	local origsize=$(wc -c < "$1");
-	local gzipsize=$(gzip -c "$1" | wc -c);
-	local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
-	printf "orig: %d bytes\n" "$origsize";
-	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
+    local origsize=$(wc -c < "$1");
+    local gzipsize=$(gzip -c "$1" | wc -c);
+    local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+    printf "orig: %d bytes\n" "$origsize";
+    printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
 # # Run `dig` and display the most useful info
@@ -166,12 +169,12 @@ function gz() {
 # Normalize `open` across Linux, macOS, and Windows.
 # This is needed to make the `o` function (see below) cross-platform.
 if [ ! $(uname -s) = 'Darwin' ]; then
-	if grep -q Microsoft /proc/version; then
-		# Ubuntu on Windows using the Linux subsystem
-		alias open='explorer.exe';
-	else
-		alias open='xdg-open';
-	fi
+    if grep -q Microsoft /proc/version; then
+        # Ubuntu on Windows using the Linux subsystem
+        alias open='explorer.exe';
+    else
+        alias open='xdg-open';
+    fi
 fi
 
 # # `o` with no arguments opens the current directory, otherwise opens the given

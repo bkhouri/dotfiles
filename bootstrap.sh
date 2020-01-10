@@ -4,8 +4,21 @@ cd "$(dirname "${BASH_SOURCE}")";
 
 #git pull origin master > /dev/null 2>&1
 
+function printUsage() {
+    echo ""
+    echo "This is the bootstrap script."
+    echo ""
+    echo "${0} [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "   -f|--force  When set, will not prompt the user for confirmation"
+    echo "   --work      When set, will synchronize work-related files"
+    echo ""
+}
+
 function doIt() {
     INSTALL_WORK=${1}
+    echo "Synchronizing files..."
     rsync --exclude ".git/" \
         --exclude ".DS_Store" \
         --exclude ".osx" \
@@ -15,12 +28,13 @@ function doIt() {
         --exclude ".idea" \
         --exclude "*.iml" \
         --exclude "*.sh" \
-        --exclude ".work" \
-        -avh --no-perms . ~;
+        --exclude "*work" \
+        --verbose --archive --human-readable . ~;
     #source ${HOME}/.bash_profile;
 
     if [ "${INSTALL_WORK}" == "true" ] ; then
-        rsync ".work" ~
+        echo "Synchronizing work realted files..."
+        rsync --verbose --archive --human-readable --no-perms ".work" "bin/work" ~
     fi
 }
 

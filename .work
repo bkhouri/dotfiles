@@ -9,8 +9,16 @@ if [ -f "/Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc" ]; then
     source /Users/bkhouri/Documents/git/tOS/tools/shogun.bashrc
 fi
 
-export PATH=${HOME}/bin/work/bin:${PATH}
-export PATH=${HOME}/bin/work/git-helpers:${PATH}
+ADDITIONAL_PATHS=(
+    ${HOME}/bin/work/bin
+    ${HOME}/bin/work/git-helpers
+)
+
+for path in "${ADDITIONAL_PATHS[@]}"; do
+    PATH=${path}:${PATH}
+done
+export PATH
+
 export GITAUTOWRAP=true
 
 user_email=`git config --list | grep user.email | grep ${WORK_EMAIL}`

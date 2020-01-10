@@ -55,8 +55,18 @@ shopt -s histappend;
 # Bind lines reference https://www.macworld.com/article/1146015/os-x/termhistory.html
 bind '"[A":history-search-backward'
 bind '"[B":history-search-forward'
+ADDITIONAL_PATHS=(
+    ${HOME}/bin
+    ${HOME}/Documents/bin
+    ${HOME}/Documents/bin/platform-tools
+    ${HOME}/Documents/git/scripts/bin
+    # /usr/local/bin:${PATH}
+)
 
-export PATH=${HOME}/bin:${HOME}/Documents/bin:${HOME}/Documents/bin/platform-tools:${HOME}/Documents/git/scripts/bin:/usr/local/bin:${PATH}
+for path in "${ADDITIONAL_PATHS[@]}"; do
+    PATH=${path}:${PATH}
+done
+export PATH
 
 #function source_alias() {
 #    [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"

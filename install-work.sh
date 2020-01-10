@@ -6,10 +6,11 @@ GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
 
 function printUsage() {
     echo ""
-    echo "This script is used to build and run the robot remote server locally."
+    echo "This script is used to install work related tools."
     echo ""
-    echo "${0} [OPTIONS]"
-    echo ""
+    echo "${0}"
+    # echo "${0} [OPTIONS]"
+    # echo ""
     # echo "Options:"
     # echo ""
 }
