@@ -54,8 +54,27 @@ if [ ! -d ${GIT_HELPERS_DIR} ] ; then
     while [ $? -ne 0 ]; do
         installGitHelpers
     done
-
-
-else
-    echo "don't install"
 fi
+
+
+BREW_INSTALL_TOOLS=(
+    buildifier
+    # buildozer
+)
+
+for tool in "${BREW_INSTALL_TOOLS[@]}"
+do
+    if [ ! -f "$(which ${tool})" ]; then
+        brew install ${tool}
+        if [ $? -ne 0 ] ; then
+            # We may have hit case where some path don't have the right permissions
+            echo "Failed to install ${tool} using brew.  If the failure was a result of incorrect"
+            echo "permissions, enter your local account password to update the ownership of"
+            echo "files/directories I should have access to."
+            set -x
+            sudo chown -R $(whoami) /usr/local/Frameworks /usr/local/bin /usr/local/etc /usr/local/lib /usr/local/sbin /usr/local/share /usr/local/share/doc /usr/local/share/locale /usr/local/share/man /usr/local/share/man/man1 /usr/local/share/man/man4 /usr/local/share/man/man5 /usr/local/share/man/man7 /usr/local/share/man/man8
+            set +x
+            brew install ${tool}
+        fi
+    fi
+done
