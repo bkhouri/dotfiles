@@ -48,7 +48,7 @@ shopt -s histappend;
 
 
 
-#BASH_ALIAS_FILE=${HOME}/.bash_alias
+BASH_ALIAS_FILE=${HOME}/.aliases
 #GIT_COMPLETION_FILE=${HOME}/.git-completion.bash
 #PROMPT_FILE=${HOME}/.prompt.bash
 
@@ -68,14 +68,14 @@ for path in "${ADDITIONAL_PATHS[@]}"; do
 done
 export PATH
 
-#function source_alias() {
-#    [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
-#    if [ -f ${BASH_ALIAS_FILE} ] ; then
-#        source ${BASH_ALIAS_FILE}
-#    fi
-#}
-#
-#source_alias
+function source_alias() {
+   [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
+   if [ -f ${BASH_ALIAS_FILE} ] ; then
+       source ${BASH_ALIAS_FILE}
+   fi
+}
+
+source_alias
 
 #[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 #[ -f $(brew --prefix)/etc/bash_completion ] && source $(brew --prefix)/etc/bash_completion
