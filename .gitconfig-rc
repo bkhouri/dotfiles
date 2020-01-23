@@ -1,8 +1,8 @@
 HOME_VAR=$(cat ~/.gitconfig  | grep '${HOME}' | egrep -v "\w*#")
 
 if [ -n "${HOME_VAR}" ]; then
-	echo 'Running git config command to overwrite the ${HOME} environment variables found in the ~/.gitconfig file'
-	git config --global core.hooksPath  ${HOME}/.git-all/hooks
-	git config --global core.excludesfile ${HOME}/.gitignore_global
+    echo 'Running git config command to overwrite the ${HOME} environment variables found in the ~/.gitconfig file'
+    # git config --global core.hooksPath  ${HOME}/.git-all/hooks
+    git config --global core.excludesfile ${HOME}/.gitignore_global
 fi
 
