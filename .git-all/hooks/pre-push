@@ -64,7 +64,6 @@ done
 if [ -n "${FAIL}" ] ; then
     exit 1
 fi
-exit 1
 # z40=0000000000000000000000000000000000000000
 
 # while read local_ref local_sha remote_ref remote_sha
