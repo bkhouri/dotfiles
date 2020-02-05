@@ -62,6 +62,11 @@ BREW_INSTALL_TOOLS=(
     # buildozer
 )
 
+NPM_INSTALL_TOOLS=(
+    npm
+    jflint
+)
+
 for tool in "${BREW_INSTALL_TOOLS[@]}"
 do
     if [ ! -f "$(which ${tool})" ]; then
@@ -77,4 +82,9 @@ do
             brew install ${tool}
         fi
     fi
+done
+
+for tool in "${NPM_INSTALL_TOOLS[@]"
+do
+    npm install -g ${tool}
 done
