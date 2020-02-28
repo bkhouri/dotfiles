@@ -130,7 +130,7 @@ if [ -n "${BASH_SEAFLY_PROMPT_ENABLE}"  -a -f "${BASH_SEAFLY_PROMPT_FILE}" ]; th
     SEAFLY_PS2_PROMPT_SYMBOL='>'
     SEAFLY_NORMAL_COLOR="$(tput setaf 63)"
     SEAFLY_ALERT_COLOR="$(tput setaf 202)"
-    SEAFLY_HOST_COLOR="$(tput setaf 242)"
+    SEAFLY_HOST_COLOR="$(tput setaf 55)"
     SEAFLY_GIT_COLOR="$(tput setaf 99)"
     SEAFLY_PATH_COLOR="$(tput setaf 70)"
     source ${BASH_SEAFLY_PROMPT_FILE}

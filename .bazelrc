@@ -1,4 +1,6 @@
-startup --output_user_root=/Volumes/BazelOut/_bazel_alan
+startup --output_user_root=/Volumes/BazelOut/_bazel_bassam
+startup --shutdown_on_low_sys_mem
+startup --max_idle_secs  30
 build --repository_cache=/Volumes/BazelCache/bazel-repo-cache
 build:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
 fetch --repository_cache=/Volumes/BazelCache/bazel-repo-cache
