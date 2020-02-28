@@ -26,3 +26,7 @@ if [ -z "${user_email}"  ] ; then
     echo "Updating git config user.email to ${WORK_EMAIL}"
     git config --global user.email ${WORK_EMAIL}
 fi
+
+## Install Apple certificates: https://titan.apple.com/confluence/display/RAA/Getting+Started
+export REQUESTS_CA_BUNDLE=/usr/local/share/ca-certificates/apple_cacert.pem
+export SSL_CERT_FILE=/usr/local/share/ca-certificates/apple_cacert.pem
