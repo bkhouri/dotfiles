@@ -1,0 +1,6 @@
+startup --output_user_root=/Volumes/BazelOut/_bazel_alan
+build --repository_cache=/Volumes/BazelCache/bazel-repo-cache
+build:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
+fetch --repository_cache=/Volumes/BazelCache/bazel-repo-cache
+fetch:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
+

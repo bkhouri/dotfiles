@@ -28,6 +28,21 @@ function getAbsolutePath() {
     fi
 }
 
+# Bazel Related functions
+nuke-bazel-out() (
+    set -x
+    diskutil apfs deleteVolume /Volumes/BazelOut
+    diskutil apfs addVolume /dev/disk1 'APFS' BazelOut
+    sudo touch /Volumes/BazelOut/.fseventsd/no_log
+)
+
+
+nuke-bazel-cache() (
+    set -x
+    diskutil apfs deleteVolume /Volumes/BazelCache
+    diskutil apfs addVolume /dev/disk1 'APFS' BazelCache -quota 64G
+    sudo touch /Volumes/BazelCache/.fseventsd/no_log
+)
 
 
 # # Change working directory to the top-most Finder window location
