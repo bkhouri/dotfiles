@@ -150,10 +150,10 @@ echo '' >> ~/.bash_profile
 brew install repo
 # brew tap bazelbuild/tap
 # brew install bazelbuild/tap/bazel
-
-
 brew install yarn
 brew install yarn-completion
+
+brew install graphviz
 # brew install go
 # brew install maven-completion
 brew install pip-completion
