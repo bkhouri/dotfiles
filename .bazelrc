@@ -3,6 +3,10 @@ startup --shutdown_on_low_sys_mem
 startup --max_idle_secs  30
 build --repository_cache=/Volumes/BazelCache/bazel-repo-cache
 build:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
+test --repository_cache=/Volumes/BazelCache/bazel-repo-cache
+test:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
+run --repository_cache=/Volumes/BazelCache/bazel-repo-cache
+run:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
 fetch --repository_cache=/Volumes/BazelCache/bazel-repo-cache
 fetch:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
 query --repository_cache=/Volumes/BazelCache/bazel-repo-cache
