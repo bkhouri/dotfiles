@@ -1,17 +1,42 @@
 startup --output_user_root=/Volumes/BazelOut/_bazel_bassam
 startup --shutdown_on_low_sys_mem
 startup --max_idle_secs  30
-build --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-build:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
-test --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-test:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
-run --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-run:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
-fetch --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-fetch:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
-query --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-query:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
-aquery --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-aquery:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
-cquery --repository_cache=/Volumes/BazelCache/bazel-repo-cache
-cquery:local --disk_cache=/Volumes/BazelCache/bazel-build-cache
+
+common --config=remote-fast
+common --remote_upload_local_results
+common --jobs=64
+
+#build --config=office
+#build --jobs=64
+
+# Home, Fast
+#build --config=remote-fast
+#build --jobs=64
+
+# Home, Medium
+build --config=remote-medium
+
+# Home, Slow
+#build --config=remote-slow
+#build --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
+#build --remote_upload_local_results
+
+
+#build  --repository_cache=/Volumes/BazelRepoCache/
+#help  --repository_cache=/Volumes/BazelRepoCache/
+#test --repository_cache=/Volumes/BazelRepoCache/
+#run --repository_cache=/Volumes/BazelRepoCache/
+#fetch --repository_cache=/Volumes/BazelRepoCache/
+#query --repository_cache=/Volumes/BazelRepoCache/
+#aquery --repository_cache=/Volumes/BazelRepoCache/
+#cquery --repository_cache=/Volumes/BazelRepoCache/
+
+
+#build:local --disk_cache=/Volumes/BazelDiskCache/
+#help:local --disk_cache=/Volumes/BazelDiskCache/
+#test:local --disk_cache=/Volumes/BazelDiskCache/
+#run:local --disk_cache=/Volumes/BazelDiskCache/
+#fetch:local --disk_cache=/Volumes/BazelDiskCache/
+#query:local --disk_cache=/Volumes/BazelDiskCache/
+#aquery:local --disk_cache=/Volumes/BazelDiskCache/
+#cquery:local --disk_cache=/Volumes/BazelDiskCache/
