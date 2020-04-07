@@ -3,7 +3,7 @@ startup --shutdown_on_low_sys_mem
 startup --max_idle_secs  30
 
 common --config=remote-fast
-common --remote_upload_local_results
+common --remote_download_outputs=toplevel
 common --jobs=64
 
 #build --config=office
@@ -22,14 +22,14 @@ build --config=remote-medium
 #build --remote_upload_local_results
 
 
-#build  --repository_cache=/Volumes/BazelRepoCache/
-#help  --repository_cache=/Volumes/BazelRepoCache/
-#test --repository_cache=/Volumes/BazelRepoCache/
-#run --repository_cache=/Volumes/BazelRepoCache/
-#fetch --repository_cache=/Volumes/BazelRepoCache/
-#query --repository_cache=/Volumes/BazelRepoCache/
-#aquery --repository_cache=/Volumes/BazelRepoCache/
-#cquery --repository_cache=/Volumes/BazelRepoCache/
+build  --repository_cache=/Volumes/BazelRepoCache/
+help  --repository_cache=/Volumes/BazelRepoCache/
+test --repository_cache=/Volumes/BazelRepoCache/
+run --repository_cache=/Volumes/BazelRepoCache/
+fetch --repository_cache=/Volumes/BazelRepoCache/
+query --repository_cache=/Volumes/BazelRepoCache/
+aquery --repository_cache=/Volumes/BazelRepoCache/
+cquery --repository_cache=/Volumes/BazelRepoCache/
 
 
 #build:local --disk_cache=/Volumes/BazelDiskCache/
