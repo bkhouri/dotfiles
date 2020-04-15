@@ -30,13 +30,13 @@ function getAbsolutePath() {
 
 # Bazel Related functions
 nuke-bazel-folder() {
-    set -x
     if diskutil apfs listSnapshots $1; then
         if ! diskutil apfs deleteVolume $1; then
             echo "Are you are still running bazel (if so, try 'bazel shutdown' first)?"
             return 1
         fi
     fi
+    set -x
     diskutil_args=("apfs" "addVolume" "/dev/disk1" "APFS" "$1")
     [[ ! -z "$2" ]] && diskutil_args+=("-quota" "$2")
     diskutil "${diskutil_args[@]}"

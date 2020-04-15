@@ -2,21 +2,21 @@ startup --output_user_root=/Volumes/BazelOut/_bazel_bassam
 startup --shutdown_on_low_sys_mem
 startup --max_idle_secs  30
 
-build:mac_config --config=remote-fast
-build:mac_config --remote_download_outputs=toplevel
-build:mac_config --jobs=64
+#build:mac_config --config=remote-fast
+#build:mac_config --remote_download_outputs=toplevel
+#build:mac_config --jobs=64
 
-test:mac_config --config=remote-fast
-test:mac_config --remote_download_outputs=toplevel
-test:mac_config --jobs=64
+#test:mac_config --config=remote-fast
+#test:mac_config --remote_download_outputs=toplevel
+#test:mac_config --jobs=64
 
-run:mac_config --config=remote-fast
-run:mac_config --remote_download_outputs=toplevel
-run:mac_config --jobs=64
+#run:mac_config --config=remote-fast
+#run:mac_config --remote_download_outputs=toplevel
+#run:mac_config --jobs=64
 
-fetch:mac_config --config=remote-fast
-fetch:mac_config --remote_download_outputs=toplevel
-fetch:mac_config --jobs=64
+#fetch:mac_config --config=remote-fast
+#fetch:mac_config --remote_download_outputs=toplevel
+#fetch:mac_config --jobs=64
 
 
 #build --config=office
@@ -27,7 +27,7 @@ fetch:mac_config --jobs=64
 #build --jobs=64
 
 # Home, Medium
-build --config=remote-medium
+#build --config=remote-medium
 
 # Home, Slow
 #build --config=remote-slow
@@ -36,14 +36,10 @@ build --config=remote-medium
 
 
 build  --repository_cache=/Volumes/BazelRepoCache/
-build  --config mac_config
 help  --repository_cache=/Volumes/BazelRepoCache/
 test --repository_cache=/Volumes/BazelRepoCache/
-test  --config mac_config
 run --repository_cache=/Volumes/BazelRepoCache/
-run  --config mac_config
 fetch --repository_cache=/Volumes/BazelRepoCache/
-fetch  --config mac_config
 query --repository_cache=/Volumes/BazelRepoCache/
 aquery --repository_cache=/Volumes/BazelRepoCache/
 cquery --repository_cache=/Volumes/BazelRepoCache/
