@@ -2,23 +2,6 @@ startup --output_user_root=/Volumes/BazelOut/_bazel_bassam
 startup --shutdown_on_low_sys_mem
 startup --max_idle_secs  30
 
-#build:mac_config --config=remote-fast
-#build:mac_config --remote_download_outputs=toplevel
-#build:mac_config --jobs=64
-
-#test:mac_config --config=remote-fast
-#test:mac_config --remote_download_outputs=toplevel
-#test:mac_config --jobs=64
-
-#run:mac_config --config=remote-fast
-#run:mac_config --remote_download_outputs=toplevel
-#run:mac_config --jobs=64
-
-#fetch:mac_config --config=remote-fast
-#fetch:mac_config --remote_download_outputs=toplevel
-#fetch:mac_config --jobs=64
-
-
 #build --config=office
 #build --jobs=64
 
@@ -45,11 +28,19 @@ aquery --repository_cache=/Volumes/BazelRepoCache/
 cquery --repository_cache=/Volumes/BazelRepoCache/
 
 
-#build:local --disk_cache=/Volumes/BazelDiskCache/
-#help:local --disk_cache=/Volumes/BazelDiskCache/
-#test:local --disk_cache=/Volumes/BazelDiskCache/
-#run:local --disk_cache=/Volumes/BazelDiskCache/
-#fetch:local --disk_cache=/Volumes/BazelDiskCache/
-#query:local --disk_cache=/Volumes/BazelDiskCache/
-#aquery:local --disk_cache=/Volumes/BazelDiskCache/
-#cquery:local --disk_cache=/Volumes/BazelDiskCache/
+# Ottawa Office
+#build --config=office
+#build --jobs=64
+
+# Home, Fast
+#build --config=remote-fast
+#build --jobs=64
+
+# Home, Medium
+build --config=remote-medium
+build --jobs=64
+
+# Home, Slow
+#build --config=remote-slow
+#build --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
+#build --remote_upload_local_results
