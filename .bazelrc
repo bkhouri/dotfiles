@@ -2,31 +2,12 @@ startup --output_user_root=/Volumes/BazelOut/_bazel_bassam
 startup --shutdown_on_low_sys_mem
 startup --max_idle_secs  30
 
-#build --config=office
-#build --jobs=64
+common --repository_cache=/Volumes/BazelRepoCache/
+common:local --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
+common:local --remote_upload_local_results=true
+build:local --spawn_strategy=worker,local
 
-# Home, Fast
-#build --config=remote-fast
-#build --jobs=64
-
-# Home, Medium
-#build --config=remote-medium
-
-# Home, Slow
-#build --config=remote-slow
-#build --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
-#build --remote_upload_local_results
-
-
-build  --repository_cache=/Volumes/BazelRepoCache/
-help  --repository_cache=/Volumes/BazelRepoCache/
-test --repository_cache=/Volumes/BazelRepoCache/
-run --repository_cache=/Volumes/BazelRepoCache/
-fetch --repository_cache=/Volumes/BazelRepoCache/
-query --repository_cache=/Volumes/BazelRepoCache/
-aquery --repository_cache=/Volumes/BazelRepoCache/
-cquery --repository_cache=/Volumes/BazelRepoCache/
-
+build --verbose_failures
 
 # Ottawa Office
 #build --config=office
@@ -42,5 +23,3 @@ build --jobs=64
 
 # Home, Slow
 #build --config=remote-slow
-#build --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
-#build --remote_upload_local_results
