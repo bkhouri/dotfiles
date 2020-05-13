@@ -34,7 +34,7 @@ function doIt() {
 
     if [ "${INSTALL_WORK}" == "true" ] ; then
         echo "Synchronizing work realted files..."
-        rsync --verbose --archive --human-readable --no-perms ".work" "bin/work" ~
+        rsync --verbose --archive --human-readable --no-perms ".work" "bin/work" "~/bin"
     fi
 }
 
