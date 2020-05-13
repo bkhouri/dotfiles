@@ -35,7 +35,7 @@ done
 
 function installGitHelpers() {
     echo ""
-    read -n1 -p "Did you visually confirm this computers public SSH key is added to github.pie.apple.com? [Y/n] " REPLY
+    read -n1 -p "Did you visually confirm this computers public SSH key is added to github.pie.apple.com? [y/N] " REPLY
     echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
@@ -73,7 +73,9 @@ NPM_INSTALL_TOOLS=(
 for tool in "${BREW_INSTALL_TOOLS[@]}"
 do
     if [ ! -f "$(which ${tool})" ]; then
+        set -x
         brew install ${tool}
+        set +x
         if [ $? -ne 0 ] ; then
             # We may have hit case where some path don't have the right permissions
             echo "Failed to install ${tool} using brew.  If the failure was a result of incorrect"
@@ -87,7 +89,9 @@ do
     fi
 done
 
-for tool in "${NPM_INSTALL_TOOLS[@]"
+for tool in "${NPM_INSTALL_TOOLS[@]}"
 do
+    set -x
     npm install -g ${tool}
+    set +x
 done
