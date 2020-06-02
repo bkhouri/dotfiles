@@ -54,6 +54,10 @@ if [ ! -d ${GIT_HELPERS_DIR} ] ; then
     while [ $? -ne 0 ]; do
         installGitHelpers
     done
+else
+    pushd "${GIT_HELPERS_DIR}"
+    git pull
+    popd
 fi
 
 

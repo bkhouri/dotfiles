@@ -114,6 +114,7 @@ brew install prettyping
 brew install git
 brew install git-lfs
 brew install git-review  # automates and streamlines some of the tasks involved with submitting local changes to a Gerrit server for review
+brew install git-gui     # gitk and possibly other git gui tools
 
 # Install gitbatch --> Ref: https://github.com/isacikgoz/gitbatch
 brew tap isacikgoz/taps
