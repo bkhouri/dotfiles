@@ -1,6 +1,6 @@
 startup --output_user_root=/Volumes/BazelOut/_bazel_bassam
 startup --shutdown_on_low_sys_mem
-startup --max_idle_secs  30
+# startup --max_idle_secs  30
 
 common --repository_cache=/Volumes/BazelRepoCache/
 common:local --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
@@ -8,6 +8,7 @@ common:local --remote_upload_local_results=true
 build:local --spawn_strategy=worker,local
 
 build --verbose_failures
+build --config remote-cache-ott
 
 # Ottawa Office
 #build --config=office
