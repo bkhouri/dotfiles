@@ -12,6 +12,7 @@ fi
 ADDITIONAL_PATHS=(
     ${HOME}/bin/work/bin
     ${HOME}/bin/work/git-helpers
+    /Applications/DiffMerge.app/Contents/Resources
 )
 
 for path in "${ADDITIONAL_PATHS[@]}"; do

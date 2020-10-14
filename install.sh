@@ -43,6 +43,17 @@ function installGitBash {
     #go get -u github.com/isacikgoz/gitbatch
 }
 
+function installPowerLineFontAndShell {
+    # clone
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fonts
+}
+
 # Use > 1 to consume two arguments per pass in the loop (e.g. each
 # argument has a corresponding value to go with it).
 # Use > 0 to consume one or more arguments per pass in the loop (e.g.
@@ -92,7 +103,7 @@ fi
 # fi
 
 if [ -n "${BOOTSTRAP}" ] ; then
-	cat <<< "Bootstraping..."
+    cat <<< "Bootstraping..."
     BOOTSTRAP_ARGS=()
     if [ ${INSTALL_WORK} ] ;  then
         BOOTSTRAP_ARGS+=(--work)

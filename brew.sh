@@ -62,7 +62,9 @@ brew install exa
 brew install ripgrep
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+# brew install wget --with-iri
+# Install wget
+brew install wget
 
 # Install GnuPG to enable PGP-signing commits.
 #brew install gnupg

@@ -66,6 +66,7 @@ BREW_INSTALL_TOOLS=(
     docker-compose-completion
     docker-completion
     shellcheck
+    shfmt
     # buildozer
 )
 
