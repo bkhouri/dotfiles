@@ -183,6 +183,11 @@ brew install brew-cask-completion
 brew cask install xquartz
 brew install diff-pdf
 
+# Install Nerd Fonts for powerline10k
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
+
+
 # Remove outdated versions from the cellar.
 brew cleanup
 

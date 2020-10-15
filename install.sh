@@ -14,6 +14,7 @@ function printUsage() {
     echo "   --bootstrap  When set, will bootstrap all the dot files in this repository"
     echo "   --no-brew    When set, will not install brew formulaes"
     echo "   --xcode      When set, it will install xcode"
+    echo "   --ohmyzsh    When set, install OH MY ZSH"
     echo "   --work       When set, run script ${INSTALL_WORK_SCRIPT}"
     echo ""
 }
@@ -54,6 +55,30 @@ function installPowerLineFontAndShell {
     rm -rf fonts
 }
 
+function installOhMyZsh {
+    echo "Installing OH MY ZSH..."
+    INSTALL_SCRIPT=${HOME}/Downloads/install_oh_my_zsh.sh
+    mkdir -p $(dirname ${INSTALL_SCRIPT}})
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --output "${INSTALL_SCRIPT}"
+    echo "[--------------- START OF OH_MY_ZSH INSTALL SCRIPT ---------------]"
+    \cat ${INSTALL_SCRIPT}
+    echo "[--------------- END OF OH_MY_ZSH INSTALL SCRIPT ---------------]"
+    echo ""
+    read -p "Are you sure you want to install OH MY ZSH? [N/y]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        # do dangerous stuff
+		installPowerLineFontAndShell
+        sh ${INSTALL_SCRIPT}
+		# install powerline10k
+		git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+    else
+        echo "Skipping installing OH MY ZSH"
+    fi
+    rm "${INSTALL_SCRIPT}"
+}
+
 # Use > 1 to consume two arguments per pass in the loop (e.g. each
 # argument has a corresponding value to go with it).
 # Use > 0 to consume one or more arguments per pass in the loop (e.g.
@@ -75,9 +100,14 @@ do
            shift
            IGNORE_BREW_INSTALL=true
            ;;
+        --ohmyzsh)
+            shift
+            INSTALL_OHMYZSH=true
+            ;;
         --work)
             shift
             INSTALL_WORK=true
+
             ;;
         *)
             # unknown option
@@ -125,9 +155,16 @@ if [ -n "${INSTALL_WORK}" ] ; then
     if [ -f "${INSTALL_WORK_SCRIPT}" ] ; then
         ${INSTALL_WORK_SCRIPT}
     else
-        echo "WARNING: WOrk install script not found: ${INSTALL_WORK_SCRIPT}"
+        echo "WARNING: Work install script not found: ${INSTALL_WORK_SCRIPT}"
     fi
 fi
+
+if [ -n "${INSTALL_OHMYZSH}" ] ; then
+    installOhMyZsh
+fi
+
 unset runBashScript
 unset installGitBash
+unset installOhMyZsh
+unset installPowerLineFontAndShell
 unset return_code
