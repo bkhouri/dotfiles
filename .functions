@@ -18,6 +18,24 @@ man() {
                 man "$@"
 }
 
+# Reference: https://github.com/chubin/wttr.in
+function wttr()
+{
+    # change Ottawa to your default location
+    local request="wttr.in/${1-Ottawa}"
+    [ "$COLUMNS" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
+
+# function exit() {
+#     read -t5 -n 1 -p "Do you really wish to exit? [Y/n] " should_exit || should_exit=y
+#     case $should_exit in
+#         [Yy] ) builtin exit $@ ;;
+#         "" ) builtin exit $@ ;;
+#         * ) printf "\n" ;;
+#     esac
+# }
+
 function getAbsolutePath() {
     if [ -n "$1" ] ; then
         if [ -d "${1}" ] ; then

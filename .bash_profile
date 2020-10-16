@@ -138,22 +138,5 @@ function git_create_branch() {
     fi
 }
 
-function exit() {
-    read -t5 -n1 -p "Do you really wish to exit? [Y/n] " should_exit || should_exit=y
-    case $should_exit in
-        [Yy] ) builtin exit $@ ;;
-        "" ) builtin exit $@ ;;
-        * ) printf "\n" ;;
-    esac
-}
-
-# Reference: https://github.com/chubin/wttr.in
-function wttr()
-{
-    # change Ottawa to your default location
-    local request="wttr.in/${1-Ottawa}"
-    [ "$COLUMNS" -lt 125 ] && request+='?n'
-    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
-}
 
 

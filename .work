@@ -15,9 +15,10 @@ ADDITIONAL_PATHS=(
     /Applications/DiffMerge.app/Contents/Resources
 )
 
-for path in "${ADDITIONAL_PATHS[@]}"; do
-    PATH=${path}:${PATH}
+for add_path in "${ADDITIONAL_PATHS[@]}"; do
+    PATH=${add_path}:${PATH}
 done
+unset add_path
 export PATH
 
 export GITAUTOWRAP=true

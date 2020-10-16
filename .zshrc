@@ -134,12 +134,26 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+ADDITIONAL_PATHS=(
+    ${HOME}/bin
+    ${HOME}/Documents/bin
+    ${HOME}/Documents/bin/platform-tools
+    ${HOME}/Documents/git/scripts/bin
+    # /usr/local/bin:${PATH}
+)
+
+for add_path in "${ADDITIONAL_PATHS[@]}"; do
+    PATH=${add_path}:${PATH}
+done
+export PATH
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [[ ! -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-for file in ~/.{zsh_aliases,}; do
+
+for file in ~/.{zsh_aliases,functions,work}; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
 done;
 unset file;
