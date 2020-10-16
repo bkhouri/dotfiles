@@ -139,7 +139,7 @@ source $ZSH/oh-my-zsh.sh
 
 [[ ! -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-for file in ~/.{zsh_aliases}; do
+for file in ~/.{zsh_aliases,}; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
 done;
 unset file;
