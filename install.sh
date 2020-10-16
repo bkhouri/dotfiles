@@ -68,11 +68,13 @@ function installOhMyZsh {
     echo    # (optional) move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        # do dangerous stuff
-		installPowerLineFontAndShell
+        # See https://gist.github.com/kevin-smets/8568070
+        installPowerLineFontAndShell
         sh ${INSTALL_SCRIPT}
-		# install powerline10k
-		git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+        # install powerline10k
+        git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+        # Install zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     else
         echo "Skipping installing OH MY ZSH"
     fi

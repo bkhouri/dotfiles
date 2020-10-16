@@ -15,6 +15,15 @@ brew update --verbose
 # Upgrade any already-installed formulae.
 brew upgrade --verbose
 
+brew install iterm2
+
+# Install Nerd Fonts for powerline10k
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
+
+brew install romkatv/powerlevel10k/powerlevel10k
+brew install zsh-syntax-highlighting
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
@@ -182,11 +191,6 @@ brew install brew-cask-completion
 # Install diff-pdf https://github.com/vslavik/diff-pdf
 brew cask install xquartz
 brew install diff-pdf
-
-# Install Nerd Fonts for powerline10k
-brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
-
 
 # Remove outdated versions from the cellar.
 brew cleanup
