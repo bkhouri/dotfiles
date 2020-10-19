@@ -138,5 +138,6 @@ function git_create_branch() {
     fi
 }
 
-
-
+# Add iterm2 shell integration - must be the last this added
+iterm_shell_integration_file=~/.iterm2_shell_integration.(basename $SHELL)
+[ -r "${iterm_shell_integration_file}" ] && [ -f "${iterm_shell_integration_file}" ] && source ${iterm_shell_integration_file}
