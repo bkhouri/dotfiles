@@ -41,7 +41,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -87,7 +87,7 @@ plugins=(
     docker
     emoji-clock
     emoji
-    git
+    #git
     git-prompt
     gitfast
     iterm2
@@ -159,5 +159,5 @@ done;
 unset file;
 
 # Add iterm2 shell integration - must be the last this added
-iterm_shell_integration_file=~/.iterm2_shell_integration.(basename $SHELL)
+iterm_shell_integration_file=~/.iterm2_shell_integration.$(basename $SHELL)
 [ -r "${iterm_shell_integration_file}" ] && [ -f "${iterm_shell_integration_file}" ] && source ${iterm_shell_integration_file}
