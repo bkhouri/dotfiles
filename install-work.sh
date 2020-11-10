@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
 
@@ -21,15 +21,14 @@ function printUsage() {
 # some arguments don't have a corresponding value to go with it such
 # as in the --default example).
 # note: if this is set to > 0 the /etc/hosts part is not recognized ( may be a bug )
-while [[ $# > 0 ]]
-do
+while [[ $# > 0 ]]; do
     case $1 in
-        *)
-            # unknown option
-            echo "Unknown Option: $1"
-            printUsage
-            exit 1
-            ;;
+    *)
+        # unknown option
+        echo "Unknown Option: $1"
+        printUsage
+        exit 1
+        ;;
     esac
 done
 
@@ -37,10 +36,9 @@ function installGitHelpers() {
     echo ""
     read -n1 -p "Did you visually confirm this computers public SSH key is added to github.pie.apple.com? [y/N] " REPLY
     echo ""
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        cat <<< "Installing git helpers"
-        git clone git@github.pie.apple.com:alan-falloon/git-helpers.git  ${GIT_HELPERS_DIR}
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        cat <<<"Installing git helpers"
+        git clone git@github.pie.apple.com:alan-falloon/git-helpers.git ${GIT_HELPERS_DIR}
 
     else
         false
@@ -49,7 +47,7 @@ function installGitHelpers() {
 
 # GIT_HELPERS_DIR=${HOME}/bin/work
 # set -x
-if [ ! -d ${GIT_HELPERS_DIR} ] ; then
+if [ ! -d ${GIT_HELPERS_DIR} ]; then
     installGitHelpers
     while [ $? -ne 0 ]; do
         installGitHelpers
@@ -59,7 +57,6 @@ else
     git pull
     popd
 fi
-
 
 BREW_INSTALL_TOOLS=(
     buildifier
@@ -75,13 +72,12 @@ NPM_INSTALL_TOOLS=(
     jflint
 )
 
-for tool in "${BREW_INSTALL_TOOLS[@]}"
-do
+for tool in "${BREW_INSTALL_TOOLS[@]}"; do
     if [ ! -f "$(which ${tool})" ]; then
         set -x
         brew install ${tool}
         set +x
-        if [ $? -ne 0 ] ; then
+        if [ $? -ne 0 ]; then
             # We may have hit case where some path don't have the right permissions
             echo "Failed to install ${tool} using brew.  If the failure was a result of incorrect"
             echo "permissions, enter your local account password to update the ownership of"
@@ -94,8 +90,7 @@ do
     fi
 done
 
-for tool in "${NPM_INSTALL_TOOLS[@]}"
-do
+for tool in "${install-work.shinstall-work.sh[@]}"; do
     set -x
     npm install -g ${tool}
     set +x

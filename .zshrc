@@ -153,7 +153,7 @@ export PATH
 [[ ! -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-for file in ~/.{zsh_aliases,functions,work}; do
+for file in ~/.{zsh_aliases,functions,work,brew_env}; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
 done;
 unset file;

@@ -2,7 +2,7 @@
 
 # Install brew
 BREW_CMD=$(which brew)
-if [ -z "${BREW_CMD}" ] ; then
+if [ -z "${BREW_CMD}" ]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
@@ -62,7 +62,7 @@ brew install nsnake
 brew install cmatrix # https://opensource.com/article/18/12/linux-toy-cmatrix
 
 # record terminal
-brew install asciinema  # https://asciinema.org
+brew install asciinema # https://asciinema.org
 
 # other useful tools, all from https://dev.to/_darrenburns/10-tools-to-power-up-your-command-line-4id4
 brew install z
@@ -124,8 +124,8 @@ brew install prettyping
 ##brew install exiv2
 brew install git
 brew install git-lfs
-brew install git-review  # automates and streamlines some of the tasks involved with submitting local changes to a Gerrit server for review
-brew install git-gui     # gitk and possibly other git gui tools
+brew install git-review # automates and streamlines some of the tasks involved with submitting local changes to a Gerrit server for review
+brew install git-gui    # gitk and possibly other git gui tools
 
 # Install gitbatch --> Ref: https://github.com/isacikgoz/gitbatch
 brew tap isacikgoz/taps
@@ -153,12 +153,13 @@ brew install python
 brew install pipenv
 brew install node@12
 # Node version 12 env vars based in installation via brew
-echo '' >> ~/.bash_profile
-echo '# Node version 12 env vars based in installation via brew - this section was generated via the brew.sh script in the dotfiles repo'  >> ~/.bash_profile
-echo 'export PATH="/usr/local/opt/node@12/bin:${PATH}"' >> ~/.bash_profile
-echo 'export LDFLAGS="-L/usr/local/opt/node@12/lib"' >> ~/.bash_profile
-echo 'export CPPFLAGS="-I/usr/local/opt/node@12/include"' >> ~/.bash_profile
-echo '' >> ~/.bash_profile
+# echo '' >>~/.bash_profile
+# echo '# Node version 12 env vars based in installation via brew - this section was generated via the brew.sh script in the dotfiles repo' >>~/.bash_profile
+# echo 'export PATH="/usr/local/opt/node@12/bin:${PATH}"' >>~/.bash_profile
+# echo 'export LDFLAGS="-L/usr/local/opt/node@12/lib"' >>~/.bash_profile
+# echo 'export CPPFLAGS="-I/usr/local/opt/node@12/include"' >>~/.bash_profile
+# echo '' >>~/.bash_profile
+
 brew install repo
 # brew tap bazelbuild/tap
 # brew install bazelbuild/tap/bazel
@@ -167,7 +168,7 @@ brew install yarn-completion
 
 brew install graphviz
 # brew install go
-# brew install maven-completion
+brew install maven-completion
 brew install pip-completion
 brew install brew-cask-completion
 # brew install docker-compose-completion
@@ -176,7 +177,7 @@ brew install brew-cask-completion
 # brew install kubernetes-helm
 # brew cask install mattermost
 
-brew install ctop  # docker container top command  https://github.com/bcicen/ctop
+brew install ctop # docker container top command  https://github.com/bcicen/ctop
 brew install brew-cask-completion
 
 # Install minikube
@@ -194,7 +195,6 @@ brew install diff-pdf
 
 # Remove outdated versions from the cellar.
 brew cleanup
-
 
 #adns
 #cairo

@@ -3,16 +3,16 @@
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 #for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
-for file in ~/.{bash_prompt,exports,aliases,functions,gitconfig-rc,work}; do
-    [ -r "${file}" ] && [ -f "${file}" ] && source "${file}";
-done;
-unset file;
+for file in ~/.{bash_prompt,exports,aliases,functions,gitconfig-rc,work,brew_env}; do
+    [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
+done
+unset file
 
 ## Case-insensitive globbing (used in pathname expansion)
 #shopt -s nocaseglob;
 
 ## Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+shopt -s histappend
 
 ## Autocorrect typos in path names when using `cd`
 #shopt -s cdspell;
@@ -46,8 +46,6 @@ shopt -s histappend;
 # Add `killall` tab completion for common apps
 # complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-
-
 BASH_ALIAS_FILE=${HOME}/.aliases
 #GIT_COMPLETION_FILE=${HOME}/.git-completion.bash
 #PROMPT_FILE=${HOME}/.prompt.bash
@@ -69,10 +67,10 @@ done
 export PATH
 
 function source_alias() {
-   [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
-   if [ -f ${BASH_ALIAS_FILE} ] ; then
-       source ${BASH_ALIAS_FILE}
-   fi
+    [ -n "$(which thefuck)" ] && eval "$(thefuck --alias)"
+    if [ -f ${BASH_ALIAS_FILE} ]; then
+        source ${BASH_ALIAS_FILE}
+    fi
 }
 
 source_alias
@@ -101,12 +99,11 @@ declare -a files_to_source=(
     "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
     "${HOME}/.bazel/bin/bazel-complete.bash"
     "/usr/local/lib/bazel/bin/bazel-complete.bash"
-    )
+)
 
 ## now loop through the above array
-for file in "${files_to_source[@]}"
-do
-   [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
+for file in "${files_to_source[@]}"; do
+    [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
 done
 
 ### Orca stuff
@@ -117,7 +114,7 @@ fi
 #### Git stuff
 
 function git_create_branch() {
-    if [ -z "$1" ] ; then
+    if [ -z "$1" ]; then
         echo "*******************************************"
         echo "*   !!! WARNING !!!  Branch not created   *"
         echo "*******************************************"
@@ -127,9 +124,9 @@ function git_create_branch() {
         current_branch=$(parse_git_branch)
         set -x
         git checkout -b $1
-        if [ $? -eq 0 ] ; then
+        if [ $? -eq 0 ]; then
             git push --set-upstream origin $1
-            if [ $? -ne 0 ] ; then
+            if [ $? -ne 0 ]; then
                 git checkout ${current_branch}
                 git branch -D $1
             fi
