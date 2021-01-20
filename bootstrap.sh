@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+cd "$(dirname "${BASH_SOURCE}")"
 
 #git pull origin master > /dev/null 2>&1
 
@@ -29,45 +29,43 @@ function doIt() {
         --exclude "*.iml" \
         --exclude "*.sh" \
         --exclude "*work" \
-        --verbose --archive --human-readable . ~;
+        --verbose --archive --human-readable . ~
     #source ${HOME}/.bash_profile;
 
-    if [ "${INSTALL_WORK}" == "true" ] ; then
+    if [ "${INSTALL_WORK}" == "true" ]; then
         echo "Synchronizing work realted files..."
-		set -x
+        set -x
         rsync --verbose --archive --human-readable --no-perms "bin/work" ~/bin
         rsync --verbose --archive --human-readable --no-perms ".work" ~
     fi
 }
 
-while [[ $# > 0 ]]
-do
+while [[ $# > 0 ]]; do
     case $1 in
-        --force|-f)
-            FORCE=true
-            shift
-            ;;
-        --work)
-            WORK=true
-            shift
-            ;;
-        *)
-            # unknown option
-            echo "Unknown Option: $1"
-            printUsage
-            exit 1
-            ;;
+    --force | -f)
+        FORCE=true
+        shift
+        ;;
+    --work)
+        WORK=true
+        shift
+        ;;
+    *)
+        # unknown option
+        echo "Unknown Option: $1"
+        printUsage
+        exit 1
+        ;;
     esac
 done
 
-
 if [ "${FORCE}" == "true" ]; then
-    doIt ${WORK};
+    doIt ${WORK}
 else
-    read -p "This may overwrite existing files in your home directory. Are you sure? [y/N] " -n 1;
-    echo "";
+    read -p "This may overwrite existing files in your home directory. Are you sure? [y/N] " -n 1
+    echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        doIt ${WORK};
-    fi;
-fi;
-unset doIt;
+        doIt ${WORK}
+    fi
+fi
+unset doIt

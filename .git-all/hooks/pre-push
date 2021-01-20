@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 # An example hook script to verify what is about to be pushed.  Called by "git
 # push" after it has checked the remote status, but before anything has been
@@ -25,71 +25,104 @@ url="$2"
 set +e
 REPO_ROOT=${PWD}
 COLOR_FILE=${REPO_ROOT}/pipelines/setup-color.sh
+ANALYSIS_TARGETS="//bazel/... //tools/..."
 
 message=()
-if [ -z "${SKIP+x}" ] && [ -n "$(command bazel)" ] ; then
-    char=*
-    line=${char}${char}${char}${char}${char}${char}${char}${char}
-    line=${line}${line}${line}${line}${line}${line}${line}${line}
-    [ -f "${COLOR_FILE}" ] && source ${COLOR_FILE}
-    for config in titanos-arm64 darwin-x86_64 #linux-x86_64
-    do
-        cat <<< "${bold}${standout}${line}${normal}"
-        cat <<< "${bold}${standout}${char} Runing bazel.sh for config ${config}...${normal}"
-        cat <<< "${bold}${standout}${line}${normal}"
-        set -x
-        CONFIG=${config} false && ${REPO_ROOT}/pipelines/bazel.sh
-        rc=$?
-        set +x
-        if [ ${rc} -ne 0 ] ; then
-            FAIL=true
-            # err_message+=("${red}FAILED: pipelines/bazel.sh config ${config}${normal}")
-            message+=("${bold}${red}FAILED: CONFIG=${config} pipelines/bazel.sh ${normal}")
-        else
-            message+=("${green}PASSED: CONFIG=${config} pipelines/bazel.sh${normal}")
-        fi
+char=*
+line=${char}${char}${char}${char}${char}${char}${char}${char}
+line=${line}${line}${line}${line}${line}${line}${line}${line}
+[ -f "${COLOR_FILE}" ] && source ${COLOR_FILE}
 
-    done
-    # warning+=("${yellow}WARNING: Pre-push hook is not running linux-x86_64 config${normal}")
-    message+=("${bold}${yellow}WARNING: Pre-push hook is not running linux-x86_64 config${normal}")
+cat <<<"${bold}${standout}${line}${normal}"
+cat <<<"${bold}${standout}${char}Bazel BUILD files (and related) format check${normal}"
+cat <<<"${bold}${standout}${line}${normal}"
+set -x
+bazel run //tools:format-bazel -- --check
+rc=$?
+set +x
+if [ ${rc} -ne 0 ]; then
+    FAIL=true
+    # err_message+=("${red}FAILED: pipelines/bazel.sh config ${config}${normal}")
+    message+=("${bold}${red}FAILED: bazel run //tools:format-bazel -- --check ${normal}")
 else
-    cat <<< "${yellow}Skipping checks.${normal}"
+    message+=("${green}PASSED: bazel run //tools:format-bazel -- --check${normal}")
 fi
 
-cat <<< ""
-for msg in "${message[@]}"
-do
-    cat <<< $msg
+for config in titanos-arm64 darwin-x86_64 ios-arm64 ios-x86_64; do #linux-x86_64
+    cat <<<"${bold}${standout}${line}${normal}"
+    cat <<<"${bold}${standout}${char}Analysis test for configuration ${config}${normal}"
+    cat <<<"${bold}${standout}${line}${normal}"
+    set -x
+    bazel test --config analysis --config ${config} ${ANALYSIS_TARGETS}
+    rc=$?
+    set +x
+    if [ ${rc} -ne 0 ]; then
+        FAIL=true
+        # err_message+=("${red}FAILED: pipelines/bazel.sh config ${config}${normal}")
+        message+=("${bold}${red}FAILED: bazel test --config analysis --config ${config} ${ANALYSIS_TARGETS} ${normal}")
+    else
+        message+=("${green}PASSED: bazel test --config analysis --config ${config} ${ANALYSIS_TARGETS}${normal}")
+    fi
 done
-if [ -n "${FAIL}" ] ; then
+
+for config in darwin-x86_64; do #linux-x86_64
+    cat <<<"${bold}${standout}${line}${normal}"
+    cat <<<"${bold}${standout}${char}Generate targets for configuration ${config}${normal}"
+    cat <<<"${bold}${standout}${line}${normal}"
+    set -x
+    rm -rf ./gen
+    bazel run --config ${config} //bazel/gen
+    rc=$?
+    set +x
+    if [ ${rc} -ne 0 ]; then
+        FAIL=true
+        # err_message+=("${red}FAILED: pipelines/bazel.sh config ${config}${normal}")
+        message+=("${bold}${red}FAILED: bazel run  --config ${config} //bazel/gen ${normal}")
+    else
+        message+=("${green}PASSED: bazel run  --config ${config} //bazel/gen${normal}")
+    fi
+done
+
+warning+=("${yellow}WARNING: Pre-push hook is not running linux-x86_64 config${normal}")
+#message+=("${bold}${yellow}WARNING: Pre-push hook is not running linux-x86_64 config${normal}")
+
+cat <<<""
+for msg in "${message[@]}"; do
+    cat <<<$msg
+done
+for msg in "${warning[@]}"; do
+    cat <<<$msg
+done
+if [ -n "${FAIL}" ]; then
     exit 1
 fi
 # z40=0000000000000000000000000000000000000000
 
 # while read local_ref local_sha remote_ref remote_sha
 # do
-# 	if [ "$local_sha" = $z40 ]
-# 	then
-# 		# Handle delete
-# 		:
-# 	else
-# 		if [ "$remote_sha" = $z40 ]
-# 		then
-# 			# New branch, examine all commits
-# 			range="$local_sha"
-# 		else
-# 			# Update to existing branch, examine new commits
-# 			range="$remote_sha..$local_sha"
-# 		fi
+#     if [ "$local_sha" = $z40 ]
+#     then
+#         # Handle delete
+#         :
+#     else
+#         if [ "$remote_sha" = $z40 ]
+#         then
+#             # New branch, examine all commits
+#             range="$local_sha"
+#         else
+#             # Update to existing branch, examine new commits
+#             range="$remote_sha..$local_sha"
+#         fi
 
-# 		# Check for WIP commit
-# 		commit=`git rev-list -n 1 --grep '^WIP' "$range"`
-# 		if [ -n "$commit" ]
-# 		then
-# 			echo >&2 "Found WIP commit in $local_ref, not pushing"
-# 			exit 1
-# 		fi
-# 	fi
+#         # Check for WIP commit
+#         commit=`git rev-list -n 1 --grep '^WIP' "$range"`
+#         if [ -n "$commit" ]
+#         then
+#             echo >&2 "Found WIP commit in $local_ref, not pushing"
+#             exit 1
+#         fi
+#     fi
 # done
 
 exit 0
+
