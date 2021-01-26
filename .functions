@@ -2,25 +2,24 @@
 
 # Create a new directory and enter it
 function mkd() {
-    mkdir -p "$@" && cd "$_";
+    mkdir -p "$@" && cd "$_"
 }
 
 # Colorized man pages, from:
 # http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 man() {
-        env \
-                LESS_TERMCAP_md=$(printf "\e[1;36m") \
-                LESS_TERMCAP_me=$(printf "\e[0m") \
-                LESS_TERMCAP_se=$(printf "\e[0m") \
-                LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-                LESS_TERMCAP_ue=$(printf "\e[0m") \
-                LESS_TERMCAP_us=$(printf "\e[1;32m") \
-                man "$@"
+    env \
+        LESS_TERMCAP_md=$(printf "\e[1;36m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
 }
 
 # Reference: https://github.com/chubin/wttr.in
-function wttr()
-{
+function wttr() {
     # change Ottawa to your default location
     local request="wttr.in/${1-Ottawa}"
     [ "$COLUMNS" -lt 125 ] && request+='?n'
@@ -37,8 +36,8 @@ function wttr()
 # }
 
 function getAbsolutePath() {
-    if [ -n "$1" ] ; then
-        if [ -d "${1}" ] ; then
+    if [ -n "$1" ]; then
+        if [ -d "${1}" ]; then
             LOCAL_VARIABLE="${1}" && echo $(cd "$LOCAL_VARIABLE" && pwd -P)
         else
             LOCAL_VARIABLE="${1}" && echo $(cd $(dirname "$LOCAL_VARIABLE") && pwd -P)/$(basename "$LOCAL_VARIABLE")
@@ -62,7 +61,7 @@ nuke-bazel-folder() {
     sudo rm -rf .{,_.}{fseventsd,Spotlight-V*,Trashes}
     sudo mkdir .fseventsd
     sudo touch .fseventsd/no_log .fseventsd/ignore .metadata_never_index .Trashes
-    cd - > /dev/null
+    cd - >/dev/null
     diskutil unmount $1
     diskutil mount $1
     sudo mdutil -i off -d /Volumes/$1
@@ -73,7 +72,7 @@ nuke-bazel-folder() {
 
 nuke-bazel-out() {
     # prep-bazel-folder BazelOut "$@"
-    nuke-bazel-folder BazelOut 100g
+    nuke-bazel-folder BazelOut 140g
 }
 nuke-bazel-repo-cache() {
     # prep-bazel-folder BazelRepoCache "$@"
@@ -174,11 +173,11 @@ nuke-bazel-disk-cache() {
 
 # Compare original and gzipped file size
 function gz() {
-    local origsize=$(wc -c < "$1");
-    local gzipsize=$(gzip -c "$1" | wc -c);
-    local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
-    printf "orig: %d bytes\n" "$origsize";
-    printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
+    local origsize=$(wc -c <"$1")
+    local gzipsize=$(gzip -c "$1" | wc -c)
+    local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
+    printf "orig: %d bytes\n" "$origsize"
+    printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
 # # Run `dig` and display the most useful info
@@ -225,9 +224,9 @@ function gz() {
 if [ ! $(uname -s) = 'Darwin' ]; then
     if grep -q Microsoft /proc/version; then
         # Ubuntu on Windows using the Linux subsystem
-        alias open='explorer.exe';
+        alias open='explorer.exe'
     else
-        alias open='xdg-open';
+        alias open='xdg-open'
     fi
 fi
 

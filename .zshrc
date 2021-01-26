@@ -87,8 +87,8 @@ plugins=(
     docker
     emoji-clock
     emoji
-    #git
-    git-prompt
+    # git
+    # git-prompt
     gitfast
     iterm2
     jfrog
@@ -97,7 +97,7 @@ plugins=(
     # pip
     # pipenv
     thefuck
-    themes
+    # themes
     zsh_reload
     zsh-autosuggestions
 )
