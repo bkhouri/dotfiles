@@ -54,7 +54,13 @@ nuke-bazel-folder() {
         fi
     fi
     set -x
-    diskutil_args=("apfs" "addVolume" "/dev/disk1" "APFS" "$1")
+    machine=$(uname -m)
+    if [[ "$machine" == "arm64" ]]; then
+        disk="/dev/disk3"
+    else
+        disk="/dev/disk1"
+    fi
+    diskutil_args=("apfs" "addVolume" "$disk" "APFS" "$1")
     [[ ! -z "$2" ]] && diskutil_args+=("-quota" "$2")
     diskutil "${diskutil_args[@]}"
     cd /Volumes/$1
