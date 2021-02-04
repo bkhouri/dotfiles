@@ -134,6 +134,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Add bash-like work delete
+# see https://unix.stackexchange.com/questions/250690/how-to-configure-ctrlw-as-delete-word-in-zsh
+my-backward-kill-word () {
+    # Add colon, comma, single/double quotes to word chars
+    local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>:,"'"'"
+    zle -f kill # Append to the kill ring on subsequent kills.
+    zle backward-kill-word
+}
+zle -N my-backward-kill-word
+bindkey '^w' my-backward-kill-word
+
+
 ADDITIONAL_PATHS=(
     ${HOME}/bin
     ${HOME}/Documents/bin
