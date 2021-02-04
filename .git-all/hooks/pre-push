@@ -25,13 +25,13 @@ url="$2"
 set +e
 REPO_ROOT=${PWD}
 COLOR_FILE=${REPO_ROOT}/pipelines/setup-color.sh
-ANALYSIS_TARGETS="//bazel/... //tools/..."
+ANALYSIS_TARGETS="//bazel/... //pipelines/... //tools/..."
 
 message=()
-char=*
-line=${char}${char}${char}${char}${char}${char}${char}${char}
-line=${line}${line}${line}${line}${line}${line}${line}${line}
-[ -f "${COLOR_FILE}" ] && source ${COLOR_FILE}
+char="*"
+line="${char}${char}${char}${char}${char}${char}${char}${char}"
+line="${line}${line}${line}${line}${line}${line}${line}${line}"
+[ -f "${COLOR_FILE}" ] && source "${COLOR_FILE}"
 
 cat <<<"${bold}${standout}${line}${normal}"
 cat <<<"${bold}${standout}${char}Bazel BUILD files (and related) format check${normal}"
@@ -88,10 +88,10 @@ warning+=("${yellow}WARNING: Pre-push hook is not running linux-x86_64 config${n
 
 cat <<<""
 for msg in "${message[@]}"; do
-    cat <<<$msg
+    cat <<<"$msg"
 done
 for msg in "${warning[@]}"; do
-    cat <<<$msg
+    cat <<<"$msg"
 done
 if [ -n "${FAIL}" ]; then
     exit 1
@@ -125,4 +125,3 @@ fi
 # done
 
 exit 0
-

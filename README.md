@@ -1,3 +1,6 @@
+This is a fork.  It has been modified to meet my needs.
+
+See some [notes](NOTES.md).
 # Mathias’s dotfiles
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
@@ -91,8 +94,8 @@ Suggestions/improvements
 ## Author
 
 | [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
-|---|
-| [Mathias Bynens](https://mathiasbynens.be/) |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Mathias Bynens](https://mathiasbynens.be/)                                                                                                     |
 
 ## Thanks to…
 
