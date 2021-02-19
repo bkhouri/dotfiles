@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 INSTALL_WORK_SCRIPT="${BASEDIR}/install-work.sh"
 
@@ -19,43 +19,43 @@ function printUsage() {
     echo ""
 }
 
-
-function runBashScript {
-    if [ -f "${1}" ] ; then
+function runBashScript() {
+    if [ -f "${1}" ]; then
         bash $@
     fi
 }
 
-function installGitBash {
+function installGitBash() {
     local outfile
     local destination_path
-    cat <<< "Installing gitbatch..."
+    cat <<<"Installing gitbatch..."
     # Download gitbatch https://github.com/isacikgoz/gitbatch
     outfile=${HOME}/Downloads/gitbatch.tar.gz
     destination_path=${HOME}/Documents/bin
     mkdir -p $(dirname ${outfile})
     mkdir -p ${destination_path}
-    curl  --silent  --location https://github.com/isacikgoz/gitbatch/releases/download/v0.4.1/gitbatch_0.4.1_darwin_amd64.tar.gz -o ${outfile}
+    curl --silent --location https://github.com/isacikgoz/gitbatch/releases/download/v0.4.1/gitbatch_0.4.1_darwin_amd64.tar.gz -o ${outfile}
     tar -C ${destination_path} -xzf ${outfile}
     rm -rf ${outfile}
     unset outfile destination_dir
     gitbatch=$(which gitbatch)
-    cat <<< " installed at ${gitbatch}"
+    cat <<<" installed at ${gitbatch}"
     #go get -u github.com/isacikgoz/gitbatch
 }
 
-function installPowerLineFontAndShell {
+function installPowerLineFontAndShell() {
     # clone
     git clone https://github.com/powerline/fonts.git --depth=1
     # install
-    cd fonts
-    ./install.sh
+    (
+        cd fonts
+        ./install.sh
+    )
     # clean-up a bit
-    cd ..
     rm -rf fonts
 }
 
-function installOhMyZsh {
+function installOhMyZsh() {
     echo "Installing OH MY ZSH..."
     INSTALL_SCRIPT=${HOME}/Downloads/install_oh_my_zsh.sh
     mkdir -p $(dirname ${INSTALL_SCRIPT}})
@@ -65,9 +65,8 @@ function installOhMyZsh {
     echo "[--------------- END OF OH_MY_ZSH INSTALL SCRIPT ---------------]"
     echo ""
     read -p "Are you sure you want to install OH MY ZSH? [N/y]" -n 1 -r
-    echo    # (optional) move to a new line
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
+    echo # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
         # See https://gist.github.com/kevin-smets/8568070
         installPowerLineFontAndShell
         sh ${INSTALL_SCRIPT}
@@ -87,36 +86,35 @@ function installOhMyZsh {
 # some arguments don't have a corresponding value to go with it such
 # as in the --default example).
 # note: if this is set to > 0 the /etc/hosts part is not recognized ( may be a bug )
-while [[ $# > 0 ]]
-do
+while [[ $# > 0 ]]; do
     case $1 in
-        --bootstrap)
-            shift # past argument
-            BOOTSTRAP=true
-            ;;
-        --xcode)
-            shift
-            INSTALL_XCODE=true
-            ;;
-        --no-brew)
-           shift
-           IGNORE_BREW_INSTALL=true
-           ;;
-        --ohmyzsh)
-            shift
-            INSTALL_OHMYZSH=true
-            ;;
-        --work)
-            shift
-            INSTALL_WORK=true
+    --bootstrap)
+        shift # past argument
+        BOOTSTRAP=true
+        ;;
+    --xcode)
+        shift
+        INSTALL_XCODE=true
+        ;;
+    --no-brew)
+        shift
+        IGNORE_BREW_INSTALL=true
+        ;;
+    --ohmyzsh)
+        shift
+        INSTALL_OHMYZSH=true
+        ;;
+    --work)
+        shift
+        INSTALL_WORK=true
 
-            ;;
-        *)
-            # unknown option
-            echo "Unknown Option: $1"
-            printUsage
-            exit 1
-            ;;
+        ;;
+    *)
+        # unknown option
+        echo "Unknown Option: $1"
+        printUsage
+        exit 1
+        ;;
     esac
 done
 
@@ -125,7 +123,7 @@ if [ -z "${IGNORE_BREW_INSTALL}" ]; then
 fi
 
 BASH_SEAFLY_PROMPT_DIR=${GIT_DIR}/bash-seafly-prompt
-if [ ! -d "${BASH_SEAFLY_PROMPT_DIR}" ] ; then
+if [ ! -d "${BASH_SEAFLY_PROMPT_DIR}" ]; then
     mkdir -p ${BASH_SEAFLY_PROMPT_DIR}
     git clone https://github.com/bluz71/bash-seafly-prompt.git ${BASH_SEAFLY_PROMPT_DIR}
 fi
@@ -134,16 +132,16 @@ fi
 #     installGitBash
 # fi
 
-if [ -n "${BOOTSTRAP}" ] ; then
-    cat <<< "Bootstraping..."
+if [ -n "${BOOTSTRAP}" ]; then
+    cat <<<"Bootstraping..."
     BOOTSTRAP_ARGS=()
-    if [ ${INSTALL_WORK} ] ;  then
+    if [ ${INSTALL_WORK} ]; then
         BOOTSTRAP_ARGS+=(--work)
     fi
     runBashScript ${BASEDIR}/bootstrap.sh "${BOOTSTRAP_ARGS[@]}"
 fi
 
-if [ -n "${INSTALL_XCODE}" ] ; then
+if [ -n "${INSTALL_XCODE}" ]; then
     echo "Installing xcode..."
     xcode-select --install
     return_code=$(echo $?)
@@ -152,16 +150,15 @@ if [ -n "${INSTALL_XCODE}" ] ; then
     fi
 fi
 
-
-if [ -n "${INSTALL_WORK}" ] ; then
-    if [ -f "${INSTALL_WORK_SCRIPT}" ] ; then
+if [ -n "${INSTALL_WORK}" ]; then
+    if [ -f "${INSTALL_WORK_SCRIPT}" ]; then
         ${INSTALL_WORK_SCRIPT}
     else
         echo "WARNING: Work install script not found: ${INSTALL_WORK_SCRIPT}"
     fi
 fi
 
-if [ -n "${INSTALL_OHMYZSH}" ] ; then
+if [ -n "${INSTALL_OHMYZSH}" ]; then
     installOhMyZsh
 fi
 

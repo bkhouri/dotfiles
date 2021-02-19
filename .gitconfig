@@ -32,3 +32,5 @@
 [branch]
 	autoSetupRebase = local
 	autoSetupMerge = always
+[pull]
+	rebase = false

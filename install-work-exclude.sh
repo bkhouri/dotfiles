@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
@@ -98,5 +97,3 @@ for tool in "${NPM_INSTALL_TOOLS[@]}"; do
     npm install -g ${tool}
     set +x
 done
-
-git config --global protocol.version 2
