@@ -38,8 +38,9 @@ function installGitHelpers() {
     echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         cat <<<"Installing git helpers"
+        set -x
         git clone git@github.pie.apple.com:alan-falloon/git-helpers.git ${GIT_HELPERS_DIR}
-
+        set +x
     else
         false
     fi
@@ -53,9 +54,11 @@ if [ ! -d ${GIT_HELPERS_DIR} ]; then
         installGitHelpers
     done
 else
+    set -x
     pushd "${GIT_HELPERS_DIR}"
     git pull
     popd
+    set +x
 fi
 
 BREW_INSTALL_TOOLS=(
@@ -90,7 +93,7 @@ for tool in "${BREW_INSTALL_TOOLS[@]}"; do
     fi
 done
 
-for tool in "${install-work.shinstall-work.sh[@]}"; do
+for tool in "${NPM_INSTALL_TOOLS[@]}"; do
     set -x
     npm install -g ${tool}
     set +x
