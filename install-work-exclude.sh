@@ -95,3 +95,5 @@ for tool in "${install-work.shinstall-work.sh[@]}"; do
     npm install -g ${tool}
     set +x
 done
+
+git config --global protocol.version 2
