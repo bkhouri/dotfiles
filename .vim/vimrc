@@ -159,3 +159,6 @@ match ExtraWhitespace /\s\+$/
 
 " Set vertical column marker at 72 characters, 80 and 120
 set colorcolumn=72,+8,+48
+
+" Do not fix end of line
+set nofixendofline
