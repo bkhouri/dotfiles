@@ -31,3 +31,16 @@ export REQUESTS_CA_BUNDLE=/usr/local/share/ca-certificates/apple_cacert.pem
 export SSL_CERT_FILE=/usr/local/share/ca-certificates/apple_cacert.pem
 
 export MOUNT_REPOSITORY_CACHE=true
+
+
+# Term integration
+case $TERM_PROGRAM in
+vscode)
+    EDITOR="code --wait"
+    GIT_EDITOR="$EDITOR"
+    export EDITOR GIT_EDITOR
+    ;;
+iTerm.app)
+    source ${HOME}/.iterm2_shell_integration.zsh
+    ;;
+esac

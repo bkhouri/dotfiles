@@ -7,6 +7,7 @@ common:local --disk_cache=/Volumes/BazelDiskCache/bazel-disk-cache
 common:local --remote_upload_local_results=true
 build:local --spawn_strategy=worker,local
 
+common:local-hw --config=srtkit-sr6 --//bazel/sr6_hw:mode=astris --//bazel/sr6_hw:astris_name=KobaSWD-00AFD4 --//bazel/sr6_hw:exec=local  --//bazel/sr6_hw:console=usbserial-A5076AMV
 build --verbose_failures
 #build --config remote-cache-ott
 
