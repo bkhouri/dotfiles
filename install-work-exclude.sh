@@ -97,3 +97,9 @@ for tool in "${NPM_INSTALL_TOOLS[@]}"; do
     npm install -g ${tool}
     set +x
 done
+
+(
+    cd ~/.bookmarks
+    ln -s ~/Documents/git @git
+    echo "Create symbolic link in \"~/.bookmarks\" for each repository prefixed with @ symbol to aid bookmarks"
+)

@@ -106,11 +106,6 @@ for file in "${files_to_source[@]}"; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
 done
 
-### Orca stuff
-if [ $(which docker-credential-osxkeychain) ]; then
-    unlink $(which docker-credential-osxkeychain)
-fi
-
 #### Git stuff
 
 function git_create_branch() {
