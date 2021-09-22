@@ -35,11 +35,11 @@ export MOUNT_REPOSITORY_CACHE=true
 
 # Term integration
 case $TERM_PROGRAM in
-vscode)
-    EDITOR="code --wait"
-    GIT_EDITOR="$EDITOR"
-    export EDITOR GIT_EDITOR
-    ;;
+#vscode)
+#    EDITOR="code --wait"
+#    GIT_EDITOR="$EDITOR"
+#    export EDITOR GIT_EDITOR
+#    ;;
 iTerm.app)
     source ${HOME}/.iterm2_shell_integration.zsh
     ;;
