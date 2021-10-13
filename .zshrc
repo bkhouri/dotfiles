@@ -98,7 +98,6 @@ plugins=(
     # pipenv
     thefuck
     # themes
-    zsh_reload
     zsh-autosuggestions
 )
 
