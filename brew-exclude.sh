@@ -3,7 +3,7 @@
 # Install brew
 BREW_CMD=$(which brew)
 if [ -z "${BREW_CMD}" ]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 set -x
