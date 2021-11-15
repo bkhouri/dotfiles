@@ -61,6 +61,7 @@ else
 fi
 
 BREW_INSTALL_TOOLS=(
+    bazel
     buildifier
     docker-compose-completion
     docker-completion
