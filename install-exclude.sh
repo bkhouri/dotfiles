@@ -2,7 +2,7 @@
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
-INSTALL_WORK_SCRIPT="${BASEDIR}/install-work.sh"
+INSTALL_WORK_SCRIPT="${BASEDIR}/install-work-exclude.sh"
 
 function printUsage() {
     echo ""
