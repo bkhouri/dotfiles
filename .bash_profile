@@ -58,6 +58,7 @@ ADDITIONAL_PATHS=(
     ${HOME}/Documents/bin
     ${HOME}/Documents/bin/platform-tools
     ${HOME}/Documents/git/scripts/bin
+    /opt/homebrew/bin
     # /usr/local/bin:${PATH}
 )
 

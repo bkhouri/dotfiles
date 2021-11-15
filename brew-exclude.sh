@@ -30,6 +30,7 @@ brew install coreutils
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
+brew install npm
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 #brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
