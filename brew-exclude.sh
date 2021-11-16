@@ -47,7 +47,7 @@ brew install bash-completion2
 #  chsh -s /usr/local/bin/bash;
 #fi;
 
-# brew install thefuck  # https://github.com/nvbn/thefuck
+brew install thefuck # https://github.com/nvbn/thefuck
 
 #brew install readline
 

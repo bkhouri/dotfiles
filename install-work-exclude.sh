@@ -65,6 +65,7 @@ BREW_INSTALL_TOOLS=(
     buildifier
     docker-compose-completion
     docker-completion
+    jfrog-cli
     shellcheck
     shfmt
     # buildozer
