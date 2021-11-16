@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -e
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 INSTALL_WORK_SCRIPT="${BASEDIR}/install-work-exclude.sh"
+BREW_INSTALL_SCRIPT="${BASEDIR}/brew-exclude.sh"
 
 function printUsage() {
     echo ""
@@ -119,7 +120,9 @@ while [[ $# > 0 ]]; do
 done
 
 if [ -z "${IGNORE_BREW_INSTALL}" ]; then
-    runBashScript ${BASEDIR}/brew.sh
+    echo "Installing BREW packages"
+    runBashScript "${BREW_INSTALL_SCRIPT}"
+    echo "DONE brew installation"
 fi
 
 BASH_SEAFLY_PROMPT_DIR=${GIT_DIR}/bash-seafly-prompt
