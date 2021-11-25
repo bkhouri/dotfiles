@@ -95,7 +95,7 @@ plugins=(
     iterm2
     jfrog
     #jira
-    osx
+    macos
     # pip
     # pipenv
     thefuck
