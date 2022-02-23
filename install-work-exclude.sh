@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -e
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
@@ -12,6 +12,25 @@ function printUsage() {
     # echo ""
     # echo "Options:"
     # echo ""
+}
+
+function installRust() {
+    local RUST_INSTALL_SCRIPT="${HOME}/Downloads/install_rustup.sh"
+    mkdir -p $(dirname "${RUST_INSTALL_SCRIPT}")
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs --output "${RUST_INSTALL_SCRIPT}"
+    echo "[--------------- START OF RUSTUP INSTALL SCRIPT ---------------]"
+    \cat "${RUST_INSTALL_SCRIPT}"
+    echo "[--------------- END OF RUSTUP INSTALL SCRIPT ---------------]"
+    echo ""
+    echo "Installing Rust per https://www.rust-lang.org"
+    read -p "Are you sure you want to install RUSTUP? [N/y]" -n 1 -r
+    echo # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        sh "${RUST_INSTALL_SCRIPT}"
+    else
+        echo "Skipping installing RUSTUP"
+    fi
+    rm "${RUST_INSTALL_SCRIPT}"
 }
 
 # Use > 1 to consume two arguments per pass in the loop (e.g. each
@@ -105,3 +124,4 @@ done
     ln -s ~/Documents/git @git
     echo "Create symbolic link in \"~/.bookmarks\" for each repository prefixed with @ symbol to aid bookmarks"
 )
+installRust
