@@ -98,6 +98,7 @@ plugins=(
     macos
     # pip
     # pipenv
+    rust
     thefuck
     # themes
     zsh-autosuggestions
@@ -175,3 +176,5 @@ unset file;
 # Add iterm2 shell integration - must be the last this added
 iterm_shell_integration_file=~/.iterm2_shell_integration.$(basename $SHELL)
 [ -r "${iterm_shell_integration_file}" ] && [ -f "${iterm_shell_integration_file}" ] && source ${iterm_shell_integration_file}
+
+source $HOME/.cargo/env
