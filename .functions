@@ -78,15 +78,15 @@ nuke-bazel-folder() {
 
 nuke-bazel-out() {
     # prep-bazel-folder BazelOut "$@"
-    nuke-bazel-folder BazelOut 140g
+    nuke-bazel-folder BazelOut 512g
 }
 nuke-bazel-repo-cache() {
     # prep-bazel-folder BazelRepoCache "$@"
-    nuke-bazel-folder BazelRepoCache 50g
+    nuke-bazel-folder BazelRepoCache 100g
 }
 nuke-bazel-disk-cache() {
     # prep-bazel-folder BazelDiskCache "$@"
-    nuke-bazel-folder BazelDiskCache 100g
+    nuke-bazel-folder BazelDiskCache 512g
 }
 
 # # Change working directory to the top-most Finder window location

@@ -120,8 +120,9 @@ for tool in "${NPM_INSTALL_TOOLS[@]}"; do
 done
 
 (
+    mkdir ~/.bookmarks
     cd ~/.bookmarks
     ln -s ~/Documents/git @git
     echo "Create symbolic link in \"~/.bookmarks\" for each repository prefixed with @ symbol to aid bookmarks"
 )
-installRust
+# installRust
