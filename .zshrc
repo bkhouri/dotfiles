@@ -12,6 +12,8 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/bkhouri/.oh-my-zsh"
+# https://superuser.com/questions/1698521/zsh-keep-all-command-outputs-on-terminal-screen
+export LESS="-F -X -R"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
