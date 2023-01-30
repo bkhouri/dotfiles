@@ -104,6 +104,7 @@ plugins=(
     thefuck
     # themes
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 # for docker plugin
