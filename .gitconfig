@@ -16,6 +16,9 @@
 	branches = branch -a
 	remotes = remote -v
 
+	# Add Signed-Off by to the commit message
+	commit = commit --signoff
+
 [user]
 	name = Bassam Khouri
 	email = bassam.khouri@gmail.com
