@@ -82,6 +82,7 @@ fi
 BREW_INSTALL_TOOLS=(
     bazel
     buildifier
+    buildozer
     docker-compose-completion
     docker-completion
     jfrog-cli
