@@ -80,7 +80,7 @@ else
 fi
 
 BREW_INSTALL_TOOLS=(
-    bazel
+    bazelisk
     buildifier
     buildozer
     docker-compose-completion
