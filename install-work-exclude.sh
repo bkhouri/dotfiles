@@ -94,6 +94,7 @@ BREW_INSTALL_TOOLS=(
 NPM_INSTALL_TOOLS=(
     npm
     jflint
+    npm-check-updates
 )
 
 for tool in "${BREW_INSTALL_TOOLS[@]}"; do
