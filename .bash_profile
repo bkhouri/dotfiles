@@ -107,29 +107,29 @@ for file in "${files_to_source[@]}"; do
     [ -r "${file}" ] && [ -f "${file}" ] && source "${file}"
 done
 
-#### Git stuff
+# #### Git stuff
 
-function git_create_branch() {
-    if [ -z "$1" ]; then
-        echo "*******************************************"
-        echo "*   !!! WARNING !!!  Branch not created   *"
-        echo "*******************************************"
-        echo ""
-        echo "Silly me!!! I need to specify a parameter, the branch.."
-    else
-        current_branch=$(parse_git_branch)
-        set -x
-        git checkout -b $1
-        if [ $? -eq 0 ]; then
-            git push --set-upstream origin $1
-            if [ $? -ne 0 ]; then
-                git checkout ${current_branch}
-                git branch -D $1
-            fi
-        fi
-        set +x
-    fi
-}
+# function git_create_branch() {
+#     if [ -z "$1" ]; then
+#         echo "*******************************************"
+#         echo "*   !!! WARNING !!!  Branch not created   *"
+#         echo "*******************************************"
+#         echo ""
+#         echo "Silly me!!! I need to specify a parameter, the branch.."
+#     else
+#         current_branch=$(parse_git_branch) # current_branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+#         set -x
+#         git checkout -b $1
+#         if [ $? -eq 0 ]; then
+#             git push --set-upstream origin $1
+#             if [ $? -ne 0 ]; then
+#                 git checkout ${current_branch}
+#                 git branch -D $1
+#             fi
+#         fi
+#         set +x
+#     fi
+# }
 
 # Add iterm2 shell integration - must be the last this added
 iterm_shell_integration_file=~/.iterm2_shell_integration.$(basename $SHELL)

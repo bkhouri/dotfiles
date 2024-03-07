@@ -89,6 +89,30 @@ nuke-bazel-disk-cache() {
     nuke-folder BazelDiskCache 512g
 }
 
+#### Git stuff
+
+function git_create_branch() {
+    if [ -z "$1" ]; then
+        echo "*******************************************"
+        echo "*   !!! WARNING !!!  Branch not created   *"
+        echo "*******************************************"
+        echo ""
+        echo "Silly me!!! I need to specify a parameter, the branch.."
+    else
+        current_branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+        set -x
+        git checkout --track -b $1
+        if [ $? -eq 0 ]; then
+            git push --set-upstream origin $1
+            if [ $? -ne 0 ]; then
+                git checkout ${current_branch}
+                git branch -D $1
+            fi
+        fi
+        set +x
+    fi
+}
+
 # # Change working directory to the top-most Finder window location
 # function cdf() { # short for `cdfinder`
 # 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
