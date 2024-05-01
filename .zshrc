@@ -158,6 +158,7 @@ ADDITIONAL_PATHS=(
     ${HOME}/Documents/git/scripts/bin
     /opt/homebrew/bin
     # /usr/local/bin:${PATH}
+    ${HOME}/.adt/bin
 )
 
 for add_path in "${ADDITIONAL_PATHS[@]}"; do

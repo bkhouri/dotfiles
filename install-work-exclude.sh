@@ -127,5 +127,8 @@ done
     ln -s ~/Documents/git @git
     echo "Create symbolic link in \"~/.bookmarks\" for each repository prefixed with @ symbol to aid bookmarks"
 )
+(
+    /bin/bash -c "$(curl -fsSL https://adt.g.apple.com/adt)"
+)
 # installRust
 echo "Configure default git email address:  git config --global user.email <work_email_address>"

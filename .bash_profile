@@ -59,6 +59,7 @@ ADDITIONAL_PATHS=(
     ${HOME}/Documents/bin/platform-tools
     ${HOME}/Documents/git/scripts/bin
     /opt/homebrew/bin
+    ${HOME}/.adt/bin
     # /usr/local/bin:${PATH}
 )
 
