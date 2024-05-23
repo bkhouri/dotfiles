@@ -2,6 +2,8 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
+BAZEL_LSP_BIN=${HOME}/bin/work/bazel-lsp
+BAZEL_LSP_VERSION="0.6.0"
 
 function printUsage() {
     echo ""
@@ -64,6 +66,14 @@ function installGitHelpers() {
     fi
 }
 
+function installBazelLsp() {
+    cat <<<"Installing bazel-lsp"
+    set -x
+    curl "https://github.com/cameron-martin/bazel-lsp/releases/download/v${BAZEL_LSP_VERSION}/bazel-lsp-${BAZEL_LSP_VERSION}-osx-arm64" --location --output "${BAZEL_LSP_BIN}"
+    chmod +x ${BAZEL_LSP_BIN}
+    set +x
+}
+
 # GIT_HELPERS_DIR=${HOME}/bin/work
 # set -x
 if [ ! -d ${GIT_HELPERS_DIR} ]; then
@@ -77,6 +87,13 @@ else
     git pull
     popd
     set +x
+fi
+
+if [ ! -d ${BAZEL_LSP_BIN} ]; then
+    installBazelLsp
+    while [ $? -ne 0 ]; do
+        installBazelLsp
+    done
 fi
 
 BREW_INSTALL_TOOLS=(
