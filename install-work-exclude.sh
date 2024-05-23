@@ -66,14 +66,6 @@ function installGitHelpers() {
     fi
 }
 
-function installBazelLsp() {
-    cat <<<"Installing bazel-lsp"
-    set -x
-    curl "https://github.com/cameron-martin/bazel-lsp/releases/download/v${BAZEL_LSP_VERSION}/bazel-lsp-${BAZEL_LSP_VERSION}-osx-arm64" --location --output "${BAZEL_LSP_BIN}"
-    chmod +x ${BAZEL_LSP_BIN}
-    set +x
-}
-
 # GIT_HELPERS_DIR=${HOME}/bin/work
 # set -x
 if [ ! -d ${GIT_HELPERS_DIR} ]; then
@@ -89,6 +81,14 @@ else
     set +x
 fi
 
+function installBazelLsp() {
+    cat <<<"Installing bazel-lsp"
+    set -x
+    curl "https://github.com/cameron-martin/bazel-lsp/releases/download/v${BAZEL_LSP_VERSION}/bazel-lsp-${BAZEL_LSP_VERSION}-osx-arm64" --location --output "${BAZEL_LSP_BIN}"
+    chmod +x ${BAZEL_LSP_BIN}
+    set +x
+}
+
 if [ ! -d ${BAZEL_LSP_BIN} ]; then
     installBazelLsp
     while [ $? -ne 0 ]; do
@@ -97,7 +97,7 @@ if [ ! -d ${BAZEL_LSP_BIN} ]; then
 fi
 
 BREW_INSTALL_TOOLS=(
-    bazelisk
+    #bazelisk
     buildifier
     buildozer
     docker-compose-completion
@@ -105,6 +105,7 @@ BREW_INSTALL_TOOLS=(
     jfrog-cli
     shellcheck
     shfmt
+    withered-magic/brew/starpls
     # buildozer
 )
 
@@ -139,7 +140,7 @@ for tool in "${NPM_INSTALL_TOOLS[@]}"; do
 done
 
 (
-    mkdir ~/.bookmarks
+    [ ! -d "~/.bookmarks" ] && mkdir ~/.bookmarks
     cd ~/.bookmarks
     ln -s ~/Documents/git @git
     echo "Create symbolic link in \"~/.bookmarks\" for each repository prefixed with @ symbol to aid bookmarks"
