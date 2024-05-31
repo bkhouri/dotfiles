@@ -2,7 +2,7 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
-BAZEL_LSP_BIN=${HOME}/bin/work/bazel-lsp
+BAZEL_LSP_BIN=${HOME}/bin/work/bin/bazel-lsp
 BAZEL_LSP_VERSION="0.6.0"
 
 function printUsage() {
@@ -103,6 +103,7 @@ BREW_INSTALL_TOOLS=(
     docker-compose-completion
     docker-completion
     jfrog-cli
+    secretive
     shellcheck
     shfmt
     withered-magic/brew/starpls
