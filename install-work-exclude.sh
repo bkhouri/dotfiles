@@ -108,6 +108,8 @@ BREW_INSTALL_TOOLS=(
     shfmt
     withered-magic/brew/starpls
     # buildozer
+    apple/aci/kcli
+    kubectl
 )
 
 NPM_INSTALL_TOOLS=(
@@ -116,6 +118,7 @@ NPM_INSTALL_TOOLS=(
     npm-check-updates
 )
 
+brew tap apple/aci
 for tool in "${BREW_INSTALL_TOOLS[@]}"; do
     if [ ! -f "$(which ${tool})" ]; then
         set -x
@@ -128,8 +131,8 @@ for tool in "${BREW_INSTALL_TOOLS[@]}"; do
             echo "files/directories I should have access to."
             set -x
             sudo chown -R $(whoami) /usr/local/Frameworks /usr/local/bin /usr/local/etc /usr/local/lib /usr/local/sbin /usr/local/share /usr/local/share/doc /usr/local/share/locale /usr/local/share/man /usr/local/share/man/man1 /usr/local/share/man/man4 /usr/local/share/man/man5 /usr/local/share/man/man7 /usr/local/share/man/man8
-            set +x
             brew install ${tool}
+            set +x
         fi
     fi
 done
