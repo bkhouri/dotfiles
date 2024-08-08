@@ -97,11 +97,12 @@ if [ ! -d ${BAZEL_LSP_BIN} ]; then
 fi
 
 BREW_INSTALL_TOOLS=(
-    #bazelisk
+    bazelisk
     buildifier
     buildozer
     docker-compose-completion
     docker-completion
+    go
     jfrog-cli
     secretive
     shellcheck
@@ -109,6 +110,7 @@ BREW_INSTALL_TOOLS=(
     withered-magic/brew/starpls
     # buildozer
     apple/aci/kcli
+    apple/crypto-services/whisperctl
     kubectl
 )
 
@@ -143,11 +145,12 @@ for tool in "${NPM_INSTALL_TOOLS[@]}"; do
     set +x
 done
 
+BOOKMARKS_DIR=${HOME}/.bookmarks
 (
-    [ ! -d "~/.bookmarks" ] && mkdir ~/.bookmarks
-    cd ~/.bookmarks
+    [ ! -d "${BOOKMARKS_DIR}" ] && mkdir -p ${BOOKMARKS_DIR}
+    cd "${BOOKMARKS_DIR}"
     ln -s ~/Documents/git @git
-    echo "Create symbolic link in \"~/.bookmarks\" for each repository prefixed with @ symbol to aid bookmarks"
+    echo "Create symbolic link in \""${BOOKMARKS_DIR}"\" for each repository prefixed with @ symbol to aid bookmarks"
 )
 (
     /bin/bash -c "$(curl -fsSL https://adt.g.apple.com/adt)"
