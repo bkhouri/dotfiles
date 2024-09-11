@@ -102,6 +102,7 @@ BREW_INSTALL_TOOLS=(
     buildozer
     docker-compose-completion
     docker-completion
+    gh  # github command line tool
     go
     jfrog-cli
     secretive
