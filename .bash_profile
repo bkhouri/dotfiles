@@ -60,6 +60,7 @@ ADDITIONAL_PATHS=(
     ${HOME}/Documents/git/scripts/bin
     /opt/homebrew/bin
     ${HOME}/.adt/bin
+    /Applications/CMake.app/Contents/bin
     # /usr/local/bin:${PATH}
 )
 

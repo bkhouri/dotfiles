@@ -159,6 +159,7 @@ ADDITIONAL_PATHS=(
     /opt/homebrew/bin
     # /usr/local/bin:${PATH}
     ${HOME}/.adt/bin
+    /Applications/CMake.app/Contents/bin
 )
 
 for add_path in "${ADDITIONAL_PATHS[@]}"; do
