@@ -97,6 +97,7 @@ if [ ! -d ${BAZEL_LSP_BIN} ]; then
 fi
 
 BREW_INSTALL_TOOLS=(
+    act  # run github actions locally
     bazelisk
     buildifier
     buildozer
