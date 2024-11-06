@@ -106,6 +106,7 @@ BREW_INSTALL_TOOLS=(
     gh  # github command line tool
     go
     jfrog-cli
+    pkl
     secretive
     shellcheck
     shfmt
