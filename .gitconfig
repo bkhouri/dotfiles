@@ -18,7 +18,6 @@
 
 	# Add Signed-Off by to the commit message
 	commit = commit --signoff
-
 [user]
 	name = Bassam Khouri
 	email = bassam.khouri@gmail.com
@@ -37,3 +36,9 @@
 	autoSetupMerge = always
 [pull]
 	rebase = false
+[includeIf "hasconfig:remote.*.url:**/*@*.apple.com/**"]
+	path = ~/.gitconfig.work
+[includeIf "hasconfig:remote.*.url:**/*ithub.com:apple/**"]
+	path = ~/.gitconfig.work
+[includeIf "hasconfig:remote.*.url:**/*ithub.com:swiftlang/**"]
+	path = ~/.gitconfig.work

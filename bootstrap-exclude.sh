@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -e
+
+WORK_GIT_CONFIG=".gitconfig.work"
 
 (
     cd "$(dirname "${BASH_SOURCE}")"
@@ -41,11 +43,27 @@
             echo "Synchronizing work realted files..."
             set -x
             rsync --verbose --archive --human-readable --no-perms "bin/work" ~/bin
-            rsync --verbose --archive --human-readable --no-perms ".work" ~
+            rsync --verbose --archive --human-readable --no-perms "${WORK_GIT_CONFIG}" ~
             POST_BOOTSTRAP_WORK="./post-bootstrap-work-exclude.sh"
             if [ -f "${POST_BOOTSTRAP_WORK}" ]; then
                 source "${POST_BOOTSTRAP_WORK}"
             fi
+
+            set +x
+            echo "****************************"
+            echo "* Update git user for work *"
+            echo "****************************"
+            read -p "Enter work name: "
+            work_name=$(echo "${REPLY}" | xargs)  # trim leading and trailing spaces
+            git config --file ~/${WORK_GIT_CONFIG} user.name "${work_name}"
+            read -p "Enter work email address: "
+            work_email_address=$(echo "${REPLY}" | xargs)  # trim leading and trailing spaces
+            git config --file ~/${WORK_GIT_CONFIG} user.email "${work_email_address}"
+
+            echo "Work git configuraiton file setup"
+            echo "  - Name : '${work_name}'"
+            echo "  - email: '${work_email_address}'"
+            set -x
         fi
     }
 

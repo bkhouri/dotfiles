@@ -1,0 +1,7 @@
+
+[commit]
+	gpgsign = true
+[gpg]
+	format = x509
+[gpg "x509"]
+	program = /usr/local/bin/ac-sign
