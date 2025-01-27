@@ -3,8 +3,35 @@ DOCKER_IMAGE=jenkins/jenkins:lts
 DOCKER_CONTAINER_NAME=jenkins
 
 LOCAL_JENKINS_VOLUME=${HOME}/Documents/jenkins_home
-preferred_container_engine=vessel
-preferred_cmd=$(command -v ${preferred_container_engine})
+PREFERRED_CONTAINER_ENGINE=vessel
+
+function printUsage {    echo ""
+    echo "This script starts a local Jenkins instance to be used for local development."
+    echo ""
+    echo "${0} [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "   --container  Use this as the container engine (default: ${PREFERRED_CONTAINER_ENGINE})"
+    echo ""
+}
+
+while [[ $# > 0 ]]; do
+    case $1 in
+    --container)
+        shift # past argument
+        PREFERRED_CONTAINER_ENGINE=${1}
+        shift
+        ;;
+    *)
+        # unknown option
+        echo "Unknown Option: $1"
+        printUsage
+        exit 1
+        ;;
+    esac
+done
+
+preferred_cmd=$(command -v ${PREFERRED_CONTAINER_ENGINE})
 container_cmd=$(command -v docker)
 if [[ -n "${preferred_cmd}" ]] ; then
     container_cmd=$preferred_cmd
