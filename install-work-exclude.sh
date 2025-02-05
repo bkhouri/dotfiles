@@ -106,10 +106,12 @@ BREW_INSTALL_TOOLS=(
     gh  # github command line tool
     go
     jfrog-cli
+    ninja
     pkl
     secretive
     shellcheck
     shfmt
+    sccache
     withered-magic/brew/starpls
     # buildozer
     apple/aci/kcli
