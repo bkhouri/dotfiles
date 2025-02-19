@@ -6,7 +6,7 @@
 	aliases = config --get-regexp alias
 
 	# List contributors with number of commits
-	contributors = shortlog --summary --numbered
+	contributors = shortlog --summary --numbered --email
 
 	# Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
