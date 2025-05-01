@@ -157,8 +157,11 @@ BOOKMARKS_DIR=${HOME}/.bookmarks
     ln -s ~/Documents/git @git
     echo "Create symbolic link in \""${BOOKMARKS_DIR}"\" for each repository prefixed with @ symbol to aid bookmarks"
 )
+
 (
     /bin/bash -c "$(curl -fsSL https://adt.g.apple.com/adt)"
+    ${HOME}/.adt/bin/adt install cyberdyne lux glowstick compose
 )
+
 # installRust
 echo "Configure default git email address:  git config --global user.email <work_email_address>"
