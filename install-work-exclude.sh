@@ -160,7 +160,7 @@ BOOKMARKS_DIR=${HOME}/.bookmarks
 
 (
     /bin/bash -c "$(curl -fsSL https://adt.g.apple.com/adt)"
-    ${HOME}/.adt/bin/adt install cyberdyne lux glowstick compose
+    ${HOME}/.adt/bin/adt install cyberdyne lux glowstick compose castool
 )
 
 # installRust
