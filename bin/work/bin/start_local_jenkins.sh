@@ -4,6 +4,7 @@ DOCKER_CONTAINER_NAME=jenkins
 
 LOCAL_JENKINS_VOLUME=${HOME}/Documents/jenkins_home
 PREFERRED_CONTAINER_ENGINE=vessel
+DOCKER_RUN_ARGS=
 
 function printUsage {    echo ""
     echo "This script starts a local Jenkins instance to be used for local development."
@@ -11,16 +12,20 @@ function printUsage {    echo ""
     echo "${0} [OPTIONS]"
     echo ""
     echo "Options:"
-    echo "   --container  Use this as the container engine (default: ${PREFERRED_CONTAINER_ENGINE})"
+    echo "   --container  <container>  Use this as the container engine (default: ${PREFERRED_CONTAINER_ENGINE})"
+    echo "   --docker-run-args ARGS"
     echo ""
 }
 
 while [[ $# > 0 ]]; do
     case $1 in
     --container)
-        shift # past argument
-        PREFERRED_CONTAINER_ENGINE=${1}
         shift
+        PREFERRED_CONTAINER_ENGINE=${1}
+        ;;
+    --docker-run-args)
+        shift
+        DOCKER_RUN_ARGS=${1}
         ;;
     *)
         # unknown option
@@ -29,6 +34,7 @@ while [[ $# > 0 ]]; do
         exit 1
         ;;
     esac
+    shift
 done
 
 preferred_cmd=$(command -v ${PREFERRED_CONTAINER_ENGINE})
@@ -45,5 +51,6 @@ $container_cmd run  --rm --name "${DOCKER_CONTAINER_NAME}" \
             --publish 8080:8080 \
             --publish 50000:50000 \
             --volume "${LOCAL_JENKINS_VOLUME}":/var/jenkins_home \
+            ${DOCKER_RUN_ARGS} \
            "${DOCKER_IMAGE}"
 
