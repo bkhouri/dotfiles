@@ -195,6 +195,11 @@ brew install brew-cask-completion
 brew cask install xquartz
 brew install diff-pdf
 
+# https://github.com/ajeetdsouza/zoxide
+brew install zoxide
+# zoxide can optionally use https://github.com/junegunn/fzf#installation
+brew install fzf
+
 # Remove outdated versions from the cellar.
 brew cleanup
 

@@ -138,3 +138,9 @@ iterm_shell_integration_file=~/.iterm2_shell_integration.$(basename $SHELL)
 [ -r "${iterm_shell_integration_file}" ] && [ -f "${iterm_shell_integration_file}" ] && source ${iterm_shell_integration_file}
 
 . "$HOME/.cargo/env"
+
+# https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init --cmd cd bash)"
+
+# https://github.com/junegunn/fzf
+eval "$(fzf --bash)"

@@ -182,4 +182,6 @@ unset file;
 iterm_shell_integration_file=~/.iterm2_shell_integration.$(basename $SHELL)
 [ -r "${iterm_shell_integration_file}" ] && [ -f "${iterm_shell_integration_file}" ] && source ${iterm_shell_integration_file}
 
+
+source $HOME/.zshenv
 source $HOME/.cargo/env
