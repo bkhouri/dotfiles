@@ -44,6 +44,7 @@ WORK_GIT_CONFIG=".gitconfig.work"
             set -x
             rsync --verbose --archive --human-readable --no-perms "bin/work" ~/bin
             rsync --verbose --archive --human-readable --no-perms "${WORK_GIT_CONFIG}" ~
+            rsync --verbose --archive --human-readable --no-perms ".work" ~
             POST_BOOTSTRAP_WORK="./post-bootstrap-work-exclude.sh"
             if [ -f "${POST_BOOTSTRAP_WORK}" ]; then
                 source "${POST_BOOTSTRAP_WORK}"

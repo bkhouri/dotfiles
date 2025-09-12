@@ -16,25 +16,6 @@ function printUsage() {
     # echo ""
 }
 
-function installRust() {
-    local RUST_INSTALL_SCRIPT="${HOME}/Downloads/install_rustup.sh"
-    mkdir -p $(dirname "${RUST_INSTALL_SCRIPT}")
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs --output "${RUST_INSTALL_SCRIPT}"
-    echo "[--------------- START OF RUSTUP INSTALL SCRIPT ---------------]"
-    \cat "${RUST_INSTALL_SCRIPT}"
-    echo "[--------------- END OF RUSTUP INSTALL SCRIPT ---------------]"
-    echo ""
-    echo "Installing Rust per https://www.rust-lang.org"
-    read -p "Are you sure you want to install RUSTUP? [N/y]" -n 1 -r
-    echo # (optional) move to a new line
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        sh "${RUST_INSTALL_SCRIPT}"
-    else
-        echo "Skipping installing RUSTUP"
-    fi
-    rm "${RUST_INSTALL_SCRIPT}"
-}
-
 # Use > 1 to consume two arguments per pass in the loop (e.g. each
 # argument has a corresponding value to go with it).
 # Use > 0 to consume one or more arguments per pass in the loop (e.g.
@@ -54,7 +35,7 @@ done
 
 function installGitHelpers() {
     echo ""
-    read -n1 -p "Did you visually confirm this computers public SSH key is added to github.pie.apple.com? [y/N] " REPLY
+    read -n1 -p "Did you visually confirm this computers public SSH key is added to GitHub and PIE GitHub? [y/N] " REPLY
     echo ""
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         cat <<<"Installing git helpers"
@@ -65,6 +46,29 @@ function installGitHelpers() {
         false
     fi
 }
+
+function installBrew {
+    shouldInstall=false
+    BREW_CMD=$(command -v brew)
+    if [ -z "${BREW_CMD}" ]; then
+        shouldInstall=true
+    else
+        # check which version
+        v=$(brew --version)
+        if [[ ${v} != *-apple* ]] ; then
+            shouldInstall=true
+        fi
+    fi
+
+
+    if [ "${shouldInstall}" == "true" ] ; then
+        /usr/bin/curl https://artifacts.apple.com/sdp/g/liv/liv-%5BRELEASE%5D.macos -o /tmp/liv && chmod +x /tmp/liv
+        /tmp/liv brew install
+    fi
+}
+
+
+installBrew
 
 # GIT_HELPERS_DIR=${HOME}/bin/work
 # set -x
@@ -101,7 +105,6 @@ BREW_INSTALL_TOOLS=(
     bazelisk
     buildifier
     buildozer
-    docker-compose-completion
     docker-completion
     gh  # github command line tool
     go
@@ -113,7 +116,6 @@ BREW_INSTALL_TOOLS=(
     shfmt
     sccache
     withered-magic/brew/starpls
-    # buildozer
     apple/aci/kcli
     apple/crypto-services/whisperctl
     kubectl
@@ -163,5 +165,9 @@ BOOKMARKS_DIR=${HOME}/.bookmarks
     ${HOME}/.adt/bin/adt install cyberdyne lux glowstick compose castool
 )
 
-# installRust
 echo "Configure default git email address:  git config --global user.email <work_email_address>"
+
+
+unset installBrew
+unset installGitHelpers
+unset installBazelLsp

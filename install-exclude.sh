@@ -46,6 +46,8 @@ function installGitBash() {
 
 function installPowerLineFontAndShell() {
     # clone
+    echo "Installing Powerline Font and shell"
+    set -x
     git clone https://github.com/powerline/fonts.git --depth=1
     # install
     (
@@ -54,6 +56,18 @@ function installPowerLineFontAndShell() {
     )
     # clean-up a bit
     rm -rf fonts
+    set +x
+}
+
+function boostrap {
+    if [ -n "${BOOTSTRAP}" ]; then
+        cat <<<"Bootstraping..."
+        BOOTSTRAP_ARGS=()
+        if [ ${INSTALL_WORK} ]; then
+            BOOTSTRAP_ARGS+=(--work)
+        fi
+        runBashScript ${BASEDIR}/bootstrap.sh "${BOOTSTRAP_ARGS[@]}"
+    fi
 }
 
 function installOhMyZsh() {
@@ -121,6 +135,17 @@ while [[ $# > 0 ]]; do
     esac
 done
 
+boostrap
+
+if [ -n "${INSTALL_WORK}" ]; then
+    if [ -f "${INSTALL_WORK_SCRIPT}" ]; then
+        ${INSTALL_WORK_SCRIPT}
+    else
+        echo "WARNING: Work install script not found: ${INSTALL_WORK_SCRIPT}"
+    fi
+fi
+
+
 if [ -z "${IGNORE_BREW_INSTALL}" ]; then
     echo "Installing BREW packages"
     runBashScript "${BREW_INSTALL_SCRIPT}"
@@ -137,15 +162,6 @@ fi
 #     installGitBash
 # fi
 
-if [ -n "${BOOTSTRAP}" ]; then
-    cat <<<"Bootstraping..."
-    BOOTSTRAP_ARGS=()
-    if [ ${INSTALL_WORK} ]; then
-        BOOTSTRAP_ARGS+=(--work)
-    fi
-    runBashScript ${BASEDIR}/bootstrap.sh "${BOOTSTRAP_ARGS[@]}"
-fi
-
 if [ -n "${INSTALL_XCODE}" ]; then
     echo "Installing xcode..."
     xcode-select --install
@@ -155,18 +171,14 @@ if [ -n "${INSTALL_XCODE}" ]; then
     fi
 fi
 
-if [ -n "${INSTALL_WORK}" ]; then
-    if [ -f "${INSTALL_WORK_SCRIPT}" ]; then
-        ${INSTALL_WORK_SCRIPT}
-    else
-        echo "WARNING: Work install script not found: ${INSTALL_WORK_SCRIPT}"
-    fi
-fi
-
 if [ -n "${INSTALL_OHMYZSH}" ]; then
     installOhMyZsh
 fi
 
+boostrap
+
+
+unset boostrap
 unset runBashScript
 unset installGitBash
 unset installOhMyZsh

@@ -18,8 +18,7 @@ brew upgrade --verbose
 brew install iterm2
 
 # Install Nerd Fonts for powerline10k
-brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
+brew install font-hack-nerd-font --cask
 
 brew install romkatv/powerlevel10k/powerlevel10k
 brew install zsh-syntax-highlighting
@@ -177,13 +176,13 @@ brew install brew-cask-completion
 # brew install docker-completion
 # brew install kubernetes-cli
 # brew install kubernetes-helm
-# brew cask install mattermost
+# brew install mattermost --cask
 
 brew install ctop # docker container top command  https://github.com/bcicen/ctop
 brew install brew-cask-completion
 
 # Install minikube
-#brew cask install minikube
+#brew install minikube --cask
 #brew install docker-machine-driver-hyperkit
 
 ## docker-machine-driver-hyperkit need root owner and uid
@@ -192,7 +191,7 @@ brew install brew-cask-completion
 ### DONE minikube install
 
 # Install diff-pdf https://github.com/vslavik/diff-pdf
-brew cask install xquartz
+brew install xquartz --cask
 brew install diff-pdf
 
 # https://github.com/ajeetdsouza/zoxide
