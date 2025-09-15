@@ -87,7 +87,7 @@ plugins=(
     colorize
     command-not-found
     docker-compose
-    docker-machine
+    # docker-machine
     docker
     emoji-clock
     emoji
