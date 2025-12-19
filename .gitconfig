@@ -41,7 +41,7 @@
 	rebase = false
 [includeIf "hasconfig:remote.*.url:**/*@*.apple.com/**"]
 	path = ~/.gitconfig.work
-[includeIf "hasconfig:remote.*.url:**/*ithub.com:apple/**"]
-	path = ~/.gitconfig.work
-[includeIf "hasconfig:remote.*.url:**/*ithub.com:swiftlang/**"]
-	path = ~/.gitconfig.work
+# [includeIf "hasconfig:remote.*.url:**/*github.com:apple/**"]
+# 	path = ~/.gitconfig.work
+# [includeIf "hasconfig:remote.*.url:**/*github.com:swiftlang/**"]
+# 	path = ~/.gitconfig.work

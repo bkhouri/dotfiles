@@ -118,6 +118,7 @@ BREW_INSTALL_TOOLS=(
     withered-magic/brew/starpls
     apple/aci/kcli
     apple/crypto-services/whisperctl
+    apple/applejack/apple-serve-xcode
     kubectl
 )
 
