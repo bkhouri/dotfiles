@@ -33,6 +33,7 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 # https://remysharp.com/2018/08/23/cli-improved
 [ -n $(which bat) ] && alias cat="bat"
+[ -n $(which btop) ] && alias top="btop"
 [ -n $(which prettyping) ] && alias ping="prettyping"
 
 ##alias cdgit="cd ${HOME}/Documents/git"
@@ -59,9 +60,6 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 #
 ## Mac tools
 #alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-#
-##[ -n $(which bat) ] && alias cat="bat"
-##[ -n $(which prettyping) ] && alias ping="prettyping"
 
 
 # Easier navigation: .., ..., ...., ....., ~ and -

@@ -119,6 +119,7 @@ brew install wget
 
 # Install other useful binaries.
 brew install bat
+brew install btop
 brew install prettyping
 #brew install ack
 ##brew install exiv2
