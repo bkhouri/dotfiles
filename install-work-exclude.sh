@@ -105,7 +105,7 @@ BREW_INSTALL_TOOLS=(
     bazelisk
     buildifier
     buildozer
-    docker-completion
+    # docker-completion
     gh  # github command line tool
     go
     jfrog-cli
@@ -120,6 +120,8 @@ BREW_INSTALL_TOOLS=(
     apple/crypto-services/whisperctl
     apple/applejack/apple-serve-xcode
     kubectl
+    uv
+    apple/genai/apple-claude-code
 )
 
 NPM_INSTALL_TOOLS=(
@@ -162,8 +164,19 @@ BOOKMARKS_DIR=${HOME}/.bookmarks
 )
 
 (
+    echo "Installing ADT..."
+    set -x
     /bin/bash -c "$(curl -fsSL https://adt.g.apple.com/adt)"
     ${HOME}/.adt/bin/adt install cyberdyne lux glowstick compose castool
+    set +x
+)
+(
+    echo "Inatalling additional packages..."
+    set -x
+    uv tool install apple-sysdiag-mcp --index-url https://pypi.apple.com/simple
+    uv tool install apple-radarcli --index-url https://pypi.apple.com/simple
+    set +x
+
 )
 
 echo "Configure default git email address:  git config --global user.email <work_email_address>"
