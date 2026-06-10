@@ -2,6 +2,7 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_DIR=${HOME}/Documents/git
 GIT_HELPERS_DIR=${HOME}/bin/work/git-helpers
+GIT_HOOKS_PATH_NAME="${GIT_DIR}/git-hooks/dt-git-hooks"
 BAZEL_LSP_BIN=${HOME}/bin/work/bin/bazel-lsp
 BAZEL_LSP_VERSION="0.6.0"
 
@@ -47,6 +48,23 @@ function installGitHelpers() {
     fi
 }
 
+function installGitHooks() {
+    echo ""
+    read -n1 -p "Did you visually confirm this computers public SSH key is added to Stash instance? [y/N] " REPLY
+    echo ""
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        cat <<<"Installing git hooks"
+        set -x
+        git clone  ssh://stash.sd.apple.com/devtoolsint/dt-git-hooks.git ${GIT_HOOKS_PATH_NAME}
+        git config --global core.hooksPath ${GIT_HOOKS_PATH_NAME}
+        set +x
+    else
+        false
+    fi
+
+}
+
+
 function installBrew {
     shouldInstall=false
     BREW_CMD=$(command -v brew)
@@ -80,6 +98,19 @@ if [ ! -d ${GIT_HELPERS_DIR} ]; then
 else
     set -x
     pushd "${GIT_HELPERS_DIR}"
+    git pull
+    popd
+    set +x
+fi
+
+if [ ! -d ${GIT_HOOKS_PATH_NAME} ]; then
+    installGitHooks
+    while [ $? -ne 0 ]; do
+        installGitHooks
+    done
+else
+    set -x
+    pushd "${GIT_HOOKS_PATH_NAME}"
     git pull
     popd
     set +x
@@ -121,7 +152,7 @@ BREW_INSTALL_TOOLS=(
     apple/applejack/apple-serve-xcode
     kubectl
     uv
-    apple/genai/apple-claude-code
+    # apple/genai/apple-claude-code
 )
 
 NPM_INSTALL_TOOLS=(
@@ -159,7 +190,7 @@ BOOKMARKS_DIR=${HOME}/.bookmarks
 (
     [ ! -d "${BOOKMARKS_DIR}" ] && mkdir -p ${BOOKMARKS_DIR}
     cd "${BOOKMARKS_DIR}"
-    ln -s ~/Documents/git @git
+    [ -f "@git" ] && ln -s ~/Documents/git @git
     echo "Create symbolic link in \""${BOOKMARKS_DIR}"\" for each repository prefixed with @ symbol to aid bookmarks"
 )
 
@@ -176,7 +207,6 @@ BOOKMARKS_DIR=${HOME}/.bookmarks
     uv tool install apple-sysdiag-mcp --index-url https://pypi.apple.com/simple
     uv tool install apple-radarcli --index-url https://pypi.apple.com/simple
     set +x
-
 )
 
 echo "Configure default git email address:  git config --global user.email <work_email_address>"
@@ -184,4 +214,5 @@ echo "Configure default git email address:  git config --global user.email <work
 
 unset installBrew
 unset installGitHelpers
+unset installGitHooks
 unset installBazelLsp
