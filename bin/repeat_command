@@ -90,7 +90,7 @@ class CommandsRepeater:
 
     def execute_command(self, command: str, *, log_file: pathlib.Path) -> bool:
         """ """
-        with log_file.open("a+") as logfile_fd:
+        with log_file.open("a+", encoding="utf-8") as logfile_fd:
             logfile_fd.write(f"❯❯❯ Executing: {command}\n")
             logfile_fd.flush()
             logging.info("    --> executing command: %s", command)
