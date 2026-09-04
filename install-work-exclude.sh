@@ -152,6 +152,7 @@ BREW_INSTALL_TOOLS=(
     apple/applejack/apple-serve-xcode
     kubectl
     uv
+    vhs  # https://github.com/charmbracelet/vhs#installation
     # apple/genai/apple-claude-code
 )
 
